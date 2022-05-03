@@ -1,0 +1,208 @@
+---
+title: "Data Ethics"
+author: "Jake Rozran"
+institute: "Govern for America"
+date: "`r Sys.Date()`"
+output:
+    xaringan::moon_reader:
+        css: xaringan-themer.css
+        nature:
+            highlightStyle: github
+            highlightLines: true
+---
+
+```{r setup, include = FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+```{r xaringan-themer, include = FALSE, warning = FALSE}
+library(xaringanthemer)
+style_duo_accent(primary_color = "#035AA6", 
+                 secondary_color = "#03A696",
+                 code_font_size = "0.5rem")
+```
+
+---
+
+class: center, middle
+
+# Introduction
+
+---
+
+class: center, middle
+
+# Lying with Statistics
+
+"Figures often beguile me, particularly when I have the arranging of them myself; in which case the remark attributed to [then British Prime Minister, Benjamin] Disraeli would often apply with justice and force: 'There are three kinds of lies: lies, damned lies, and statistics.'" - Mark Twain, 1907
+
+---
+
+class: inverse, center, middle
+
+# Data Visualization can often be Manipulated for Purpose
+
+Consider the following line chart. What conclusion do you draw?
+
+![stand your ground](stand_your_ground.png)
+
+---
+
+class: center, middle
+
+# Take a Closer Look at the y-axis
+
+What is really happening?
+
+![stand your ground](stand_your_ground.png)
+
+---
+
+class: center, middle
+
+![shame](shame.gif)
+
+---
+
+class: inverse, center, middle
+
+![bad_y_axis](temp_change.png)
+
+---
+
+class: center, middle
+
+# Everything Looks Small from Far Away
+
+![zoom_out](zoom_out.gif)
+
+---
+
+class: inverse, center, middle
+
+# COVID is Getting Better?
+
+Look at the dates closely... 
+
+![COVID](covid-ga-recreation.jpeg)
+
+---
+
+class: center, middle
+
+![oh_no](i_dont_like_that.gif)
+
+---
+
+class: center, middle
+
+# Some Ethical Conundrums
+
+---
+
+class: left, middle
+
+# Predicting Sexuality
+
+Y. Wang and Kosinski (2018) used a deep neural network and logistic regression 
+to build a classifier for sexual orientation based on pictures of people’s 
+faces. The authors claim that if given five images of a person’s face, their 
+model would correctly predict the sexual orientation of 91% of men and 83% of 
+women. The authors highlight the potential harm that their work could do in 
+their abstract:
+
+> "Additionally, given that companies and governments are increasingly using computer vision algorithms to detect people’s intimate traits, our findings expose a threat to the privacy and safety of gay men and women."
+
+A subsequent article in The New Yorker also notes that:
+
+> "the study consisted entirely of white faces, but only because the dating site had served up too few faces of color to provide for meaningful analysis."
+
+---
+
+class: inverse, left, middle
+
+# Predicting Sexuality (continued)
+
+1. Was this research ethical? 
+2. Were the authors justified in creating and publishing this model?
+
+---
+
+class: inverse, left, middle
+
+# Predicting Race
+
+Imai and Khanna (2016) built a racial prediction algorithm using a Bayes 
+classifier trained on voter registration records from Florida and the U.S. 
+Census Bureau’s name list. In addition to the publishing the paper detailing the 
+methodology, the authors published the software for the classifier on GitHub 
+under an open-source license. The `wru` package is available on CRAN and will 
+return predicted probabilities for a person’s race based on either their last 
+name alone, or their last name and their address.
+
+---
+
+class: left, middle
+
+# Predicting Race (continued)
+
+1. Was the publication of this model ethical? 
+2. Does the open-source nature of the code affect your answer? 
+3. Is it ethical to use this software? 
+4. Does your answer change depending on the intended use?
+
+---
+
+class: left, middle
+
+# Algorithmic Bias
+
+- Algorithms are at the core of many data science models
+- Biased data may lead to algorithmic bias
+- For example: Some groups may be underrepresented or systematically excluded 
+from data collection efforts
+
+---
+
+class: left, middle
+
+# Algorithmic Bias Example
+
+Consider a criminal recidivism algorithm used in several states and detailed in 
+a ProPublica story titled “Machine Bias” (Angwin et al. 2016). The algorithm 
+returns predictions about how likely a criminal is to commit another crime based 
+on a survey of 137 questions. ProPublica claims that the algorithm is biased:
+
+> "Black defendants were still 77 percent more likely to be pegged as at higher risk of committing a future violent crime and 45 percent more likely to be predicted to commit a future crime of any kind."
+
+---
+
+class: center, middle
+
+# Algorithmic Bias Example (continued)
+
+How could the predictions be biased, when the race of the defendants is not 
+included in the model?
+
+---
+
+class: left, middle
+
+# Algorithmic Bias Example (continued)
+
+Consider that one of the survey questions is "was one of your parents ever sent 
+to jail or prison?"
+
+**Proxy Variable**: a variable that is not in itself directly relevant, but that 
+serves in place of an unobservable or immeasurable variable
+
+---
+
+class: left, middle
+
+# Podcast Discussion
+
+1. What shocked you the most from the podcast?
+2. Are there places where facial recognition may be beneficial?
+3. What do you think about consent and facial recognition?
+4. How do we fix the issues from the podcast?
