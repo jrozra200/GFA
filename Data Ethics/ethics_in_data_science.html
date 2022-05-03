@@ -4,7 +4,7 @@
     <title>Data Ethics</title>
     <meta charset="utf-8" />
     <meta name="author" content="Jake Rozran" />
-    <meta name="date" content="2022-05-03" />
+    <meta name="date" content="2022-05-09" />
     <script src="ethics_in_data_science_files/header-attrs/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
@@ -15,14 +15,17 @@ class: center, middle, inverse, title-slide
 .title[
 # Data Ethics
 ]
+.subtitle[
+## Lunch &amp; Learn
+]
 .author[
 ### Jake Rozran
 ]
 .institute[
-### Villanova University
+### Govern for America
 ]
 .date[
-### 2022-05-03
+### May 9, 2022
 ]
 
 ---
@@ -31,6 +34,62 @@ class: center, middle, inverse, title-slide
 
 
 
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 110px;
+height: 128px;
+z-index: 0;
+background-image: url(ethics_in_data_science_files/gfa_logo_clear.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+bottom:-4.5em;left:1em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('a')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = 'https://www.govern4america.org/'
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+.pull-left[
+# Who Am I?
+
+- Please call me Jake (I’ll accept Jake from State Farm)  
+
+- I am an Adjunct Professor of Data Science and Statistics @ Villanova 
+University  
+
+- Data Science Practice Lead at a company called CivicActions  
+
+- Dad; Data Nerd; Philadelphian  
+
+- Please connect with me!  [www.jakelearnsdatascience.com](www.jakelearnsdatascience.com) 
+]
+
+.pull-right[
+.center[![le](ethics_in_data_science_files/love run-6.jpg)]
+![fam](ethics_in_data_science_files/family.jpg)
+]
+
+---
 
 class: center, middle
 
@@ -40,13 +99,17 @@ class: center, middle
 
 ---
 
-class: inverse, center, middle
+class: center, middle
 
 # Data Visualization can often be Manipulated for Purpose
 
-Consider the following line chart. What conclusion do you draw?
+---
 
-![stand your ground](stand_your_ground.png)
+class: center, middle
+
+# Consider the following line chart. What conclusion do you draw?
+
+![stand your ground](ethics_in_data_science_files/stand_your_ground.png)
 
 ---
 
@@ -56,19 +119,19 @@ class: center, middle
 
 What is really happening?
 
-![stand your ground](stand_your_ground.png)
+![stand your ground](ethics_in_data_science_files/stand_your_ground.png)
 
 ---
 
 class: center, middle
 
-![shame](shame.gif)
+![shame](ethics_in_data_science_files/shame.gif)
 
 ---
 
-class: inverse, center, middle
+class: center, middle
 
-![bad_y_axis](temp_change.png)
+![bad_y_axis](ethics_in_data_science_files/temp_change.png)
 
 ---
 
@@ -76,23 +139,23 @@ class: center, middle
 
 # Everything Looks Small from Far Away
 
-![zoom_out](zoom_out.gif)
-
----
-
-class: inverse, center, middle
-
-# COVID is Getting Better?
-
-Look at the dates closely... 
-
-![COVID](covid-ga-recreation.jpeg)
+![zoom_out](ethics_in_data_science_files/zoom_out.gif)
 
 ---
 
 class: center, middle
 
-![oh_no](i_dont_like_that.gif)
+# COVID is Getting Better?
+
+Look at the dates closely... 
+
+![COVID](ethics_in_data_science_files/covid-ga-recreation.jpeg)
+
+---
+
+class: center, middle
+
+![oh_no](ethics_in_data_science_files/i_dont_like_that.gif)
 
 ---
 
@@ -106,22 +169,15 @@ class: left, middle
 
 # Predicting Sexuality
 
-Y. Wang and Kosinski (2018) used a deep neural network and logistic regression 
-to build a classifier for sexual orientation based on pictures of people’s 
-faces. The authors claim that if given five images of a person’s face, their 
-model would correctly predict the sexual orientation of 91% of men and 83% of 
-women. The authors highlight the potential harm that their work could do in 
-their abstract:
-
-&gt; "Additionally, given that companies and governments are increasingly using computer vision algorithms to detect people’s intimate traits, our findings expose a threat to the privacy and safety of gay men and women."
-
-A subsequent article in The New Yorker also notes that:
-
-&gt; "the study consisted entirely of white faces, but only because the dating site had served up too few faces of color to provide for meaningful analysis."
+- Y. Wang and Kosinski (2018) used machine learning to build a model that 
+predicts sexual orientation based on pictures of people’s faces
+- The authors claim that if given **five images of a person’s face**, their 
+model would **correctly predict the sexual orientation** of 91% of men and 83% of 
+women
 
 ---
 
-class: inverse, left, middle
+class: left, middle
 
 # Predicting Sexuality (continued)
 
@@ -130,17 +186,70 @@ class: inverse, left, middle
 
 ---
 
-class: inverse, left, middle
+class: left, middle
+
+# Predicting Sexuality (continued)
+
+- The authors highlight the potential harm that their work could do in their 
+abstract:
+&gt; "Additionally, given that companies and governments are increasingly using computer vision algorithms to detect people’s intimate traits, our findings expose a threat to the privacy and safety of gay men and women."
+
+---
+
+class: left, middle
+
+# Predicting Sexuality (continued)
+
+1. Now was this research ethical? 
+2. Does this change your opinion on the justification?
+
+---
+
+class: left, middle
+
+# Predicting Sexuality (continued)
+
+A subsequent article in *The New Yorker* also notes that:
+&gt; "the study consisted entirely of white faces, but only because the dating site had served up too few faces of color to provide for meaningful analysis."
+
+---
+
+class: left, middle
+
+# Predicting Sexuality (continued)
+
+1. Now we have more context... how do we feel about the ethics?
+2. Were the authors justified in creating and publishing this model?
+
+---
+
+class: left, middle
 
 # Predicting Race
 
-Imai and Khanna (2016) built a racial prediction algorithm using a Bayes 
-classifier trained on voter registration records from Florida and the U.S. 
-Census Bureau’s name list. In addition to the publishing the paper detailing the 
-methodology, the authors published the software for the classifier on GitHub 
-under an open-source license. The `wru` package is available on CRAN and will 
-return predicted probabilities for a person’s race based on either their last 
-name alone, or their last name and their address.
+- Imai and Khanna (2016) built a racial prediction algorithm using machine 
+learning 
+- The model was trained using voter registration records from Florida and the 
+U.S. Census Bureau’s name list
+- The model returns predicted probabilities for a person’s race based on either 
+their last name alone, or their last name and their address
+
+---
+
+class: left, middle
+
+# Predicting Race (continued)
+
+Was the publication of this model ethical? 
+
+---
+
+class: left, middle
+
+# Predicting Race (continued)
+
+In addition to the publishing the paper detailing the methodology, the authors 
+published the software for the classifier on GitHub under an open-source license
 
 ---
 
@@ -152,6 +261,15 @@ class: left, middle
 2. Does the open-source nature of the code affect your answer? 
 3. Is it ethical to use this software? 
 4. Does your answer change depending on the intended use?
+
+
+---
+
+class: center, middle
+
+# Algorithmic Bias
+
+![algo_bias](ethics_in_data_science_files/reproducibility_court_blank.png)
 
 ---
 
@@ -170,10 +288,12 @@ class: left, middle
 
 # Algorithmic Bias Example
 
-Consider a criminal recidivism algorithm used in several states and detailed in 
-a ProPublica story titled “Machine Bias” (Angwin et al. 2016). The algorithm 
-returns predictions about how likely a criminal is to commit another crime based 
-on a survey of 137 questions. ProPublica claims that the algorithm is biased:
+- Consider a criminal recidivism algorithm used in several states and detailed in 
+a ProPublica story titled “Machine Bias” (Angwin et al. 2016)
+- The algorithm returns predictions about how likely a criminal is to commit 
+another crime based on a survey of 137 questions
+
+ProPublica claims that the algorithm is biased:
 
 &gt; "Black defendants were still 77 percent more likely to be pegged as at higher risk of committing a future violent crime and 45 percent more likely to be predicted to commit a future crime of any kind."
 
@@ -197,6 +317,65 @@ to jail or prison?"
 
 **Proxy Variable**: a variable that is not in itself directly relevant, but that 
 serves in place of an unobservable or immeasurable variable
+
+---
+
+class: center, middle
+
+# Examples from the GFA Fellows
+
+---
+
+class: left, middle
+
+# Chicago Police
+
+*From Carolyn Wu*
+
+- Our public safety section is currently working on a project to track which 
+police officers are assigned to each beat (route within a district)
+- The Chicago Police Department has pushed back on providing this data as 
+they’re worried about people using this data to time criminal activities
+- For example, if you know this area is understaffed at a certain time you might 
+be more inclined to commit a crime at that location during that time
+
+---
+
+class: left, middle
+
+# Chicago Police (continued)
+
+1. What are the benefits if Chicago PD were to provide this data?
+2. What are the challenges?
+3. Is it ethical for Chicago PD to withhold this data?
+
+---
+
+class: left, middle
+
+# Michigan Pathways to Potential Program
+
+*From Tyler Foley*
+
+- Michigan is required to allow school aid funds to be used for the Pathways to 
+Potential Program created by the Department of Health and Human Services (MDHSS)
+- Both MDHSS and the Michigan Department of Education (MDE) support the sharing 
+of education data with public health data to evaluate the effectiveness of the 
+Pathways to Potential program
+- There is interest in using education data beyond evaluation purposes and 
+include sharing state data with success coaches across the state to identify 
+students for receiving supports through Pathways to Potential
+- While enabling the ability for success students to reach additional students 
+would likely increase student outcomes, there is potential for biased decisions 
+
+---
+
+class: left, middle
+
+# Michigan Pathways to Potential Program (continued)
+
+1. Could an algorithm do better?
+2. Could we design a way to test our hypothesis?
 
 ---
 
