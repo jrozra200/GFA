@@ -124,11 +124,17 @@ sum_iris <- iris %>%
               mean_sepal_width = mean(Sepal.Width))
 
 iris <- iris %>% 
-    right_join(sum_iris, by = "Species") %>% 
-    mutate(percent_from_avg = (Sepal.Length - mean_sepal_length) / mean_sepal_length)
+    left_join(sum_iris, by = "Species") %>% 
+    mutate(percent_from_avg_l = (Sepal.Length - mean_sepal_length) / mean_sepal_length,
+           percent_from_avg_w = (Sepal.Width - mean_sepal_width) / mean_sepal_width) 
+
+iris <- iris %>% 
+    mutate(color = ifelse(percent_from_avg_l == min(iris$percent_from_avg_l), 
+                          "black", "red"))
 
 sum_iris %>% 
-    rename(`Avg Sepal Length` = mean_sepal_length) %>% 
+    rename(`Avg Sepal Length` = mean_sepal_length,
+           `Avg Sepal Width` = mean_sepal_width) %>% 
     head() %>%
     kbl() %>%
     kable_material(c("striped", "hover"))
@@ -158,3 +164,71 @@ ggplot(sum_iris, aes(x = reorder(Species, mean_sepal_length),
           axis.ticks = element_blank())
 ```
 
+---
+
+class: left, middle
+
+# 4. Review
+
+Often overlooked due to expediency, ensuring the data is accurate will preempt 
+questions and enhance trust in the data. 
+```{r plot_review, echo = FALSE}
+ggplot(iris, aes(x = percent_from_avg_l, 
+                 y = percent_from_avg_w, 
+                 color = color)) +
+    geom_point() + 
+    scale_color_manual(values = c("red", "#1a3f6f")) + 
+    geom_hline(yintercept = 0) + 
+    geom_vline(xintercept = 0) +
+    ggtitle("Percent Difference from Averages", 
+            subtitle = "Is the Red Point an Outlier or Bad Data?") +
+    xlab("Percent Difference from Length") +
+    ylab("Percent Difference from Width") +
+    scale_x_continuous(labels = percent_format()) +
+    scale_y_continuous(labels = percent_format()) +
+    theme(panel.background = element_blank(),
+          panel.grid = element_blank(),
+          axis.ticks = element_blank(),
+          legend.position = "none")
+```
+
+
+---
+
+class: center, middle
+
+# Visualization Tips & Tricks
+
+
+---
+
+class: left, middle
+
+# Plots Speak Louder than Words
+
+.pull-left[
+> Company A had revenues of $1MM and Company B had revenues of $750k.
+
+]
+
+.pull-right[
+```{r plots, echo = FALSE}
+plot_dat <- tibble(company = c("A", "B"),
+                   revenue = c(1000000, 750000))
+
+ggplot(plot_dat, aes(x = reorder(company, revenue), y = revenue)) +
+    geom_bar(stat = "identity", fill = "#1a3f6f") +
+    scale_y_continuous(labels = dollar_format()) +
+    ggtitle("Earnings ($)", 
+            subtitle = "More Powerful Visualization") +
+    xlab("Company") +
+    ylab("Revenue ($)") +
+    coord_flip() + 
+    theme(panel.background = element_blank(),
+          panel.grid = element_blank(),
+          axis.ticks = element_blank(), 
+          axis.text = element_text(size = 14),
+          axis.title = element_text(size = 16),
+          plot.title = element_text(size = 18))
+```
+]
