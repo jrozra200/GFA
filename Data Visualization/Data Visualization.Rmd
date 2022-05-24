@@ -7,7 +7,6 @@ output:
   xaringan::moon_reader:
     css: xaringan-themer.css
     nature:
-      slideNumberFormat: "%current%"
       highlightStyle: github
       highlightLines: true
       ratio: 16:9
@@ -207,7 +206,7 @@ class: left, middle
 # Plots Speak Louder than Words
 
 .pull-left[
-> Company A had revenues of $1MM and Company B had revenues of $750k.
+> Company A had revenues of $1MM and Company B had revenues of $750k in FY2021.
 
 ]
 
@@ -218,17 +217,85 @@ plot_dat <- tibble(company = c("A", "B"),
 
 ggplot(plot_dat, aes(x = reorder(company, revenue), y = revenue)) +
     geom_bar(stat = "identity", fill = "#1a3f6f") +
-    scale_y_continuous(labels = dollar_format()) +
-    ggtitle("Earnings ($)", 
-            subtitle = "More Powerful Visualization") +
+    scale_y_continuous(limits = c(0, 1100000)) +
+    geom_text(aes(label = dollar(revenue)), hjust = 0, size = 5) + 
+    ggtitle("Annual Company Earnings ($)", 
+            subtitle = "Visualization Gives a Fuller Understanding of the Data.") +
     xlab("Company") +
     ylab("Revenue ($)") +
     coord_flip() + 
     theme(panel.background = element_blank(),
           panel.grid = element_blank(),
           axis.ticks = element_blank(), 
-          axis.text = element_text(size = 14),
-          axis.title = element_text(size = 16),
+          axis.text.y = element_text(size = 14),
+          axis.text.x = element_blank(),
+          axis.title = element_blank(),
           plot.title = element_text(size = 18))
+```
+]
+
+---
+
+class: left, middle
+
+# Let the Data Speak for Itself
+
+.pull-left[
+Do not use any bs to make the graph "pretty." A clean crisp chart allows the 
+reader to focus on the data and the message of the story.
+
+This means:
+
+1. No 3D rendering EVER
+2. No "pretty" colors (more on this soon)
+3. No heavy grid lines
+4. NEVER NEVER NEVER a pie chart (though the WSJ doesn't agree with me)
+]
+
+.pull-right[
+This is bad... e
+]
+
+---
+
+# Composing Data Graphics
+
+Anyone can create a data visualization - the hard part is making it tell the 
+correct story in the easiest to understand way. 
+
+```{r bad_good, echo = FALSE}
+bad_dat <- data.frame(variable = c("a", "b", "c", "d", "e"),
+                      value = c(22, 21, 20, 19, 18))
+
+bad_graph <- ggplot(bad_dat, aes(x = "", y = value, fill = variable)) +
+    geom_bar(stat = "identity") + 
+    coord_polar("y", start = 0) + 
+    theme(legend.position = "top",
+          legend.title = element_blank(),
+          panel.background = element_blank(),
+          axis.ticks = element_blank(),
+          axis.title = element_blank())
+
+better_graph <- ggplot(bad_dat, aes(x = variable, y = value, fill = variable)) +
+    geom_bar(stat = "identity") + 
+    geom_text(aes(label = value), color = "black", nudge_y = 1) + 
+    theme(legend.position = "top",
+          legend.title = element_blank(),
+          panel.background = element_blank(),
+          axis.ticks = element_blank(),
+          axis.title = element_blank(),
+          panel.grid.major.y = element_line(color = "light gray"))
+```
+
+
+.pull-left[
+```{r bad_graph, echo = FALSE}
+bad_graph
+```
+]
+
+.pull-right[
+```{r better_graph, echo = FALSE}
+better_graph
 ```
 ]
