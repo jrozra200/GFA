@@ -367,11 +367,17 @@ class: left, middle
 # Plots Speak Louder than Words
 
 .pull-left[
+
+## Do NOT!
+
 > Company A had revenues of $1MM and Company B had revenues of $750k in FY2021.
 
 ]
 
 .pull-right[
+
+## Do!
+
 ```{r plots, echo = FALSE}
 plot_dat <- tibble(company = c("A", "B"),
                    revenue = c(1000000, 750000))
