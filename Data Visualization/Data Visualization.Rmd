@@ -90,6 +90,22 @@ class: center, middle
 
 ---
 
+class: left, middle
+
+# Getting Setup for In-Class Exercise
+
+## [Download and open (in Excel) the Iris dataset](https://github.com/jrozra200/GFA/blob/main/Data%20Visualization/Data%20Exercise/iris_data.csv) OR
+
+- PREFERRED - but only if you already have Microsoft Excel installed!
+- [https://tinyurl.com/iris-download](https://tinyurl.com/iris-download)
+
+## [Open the data in Google Sheets](https://docs.google.com/spreadsheets/d/1urFs4EiL2DpRT-JVdxqKS9kWyG9051qoZ7B4oxWNsF8/edit?usp=sharing)
+
+- Make a copy of the spreadsheet for you to edit
+- [https://tinyurl.com/GFA-iris-google-sheets](https://tinyurl.com/GFA-iris-google-sheets)
+
+---
+
 class: center, middle
 
 # How to Create Effective Charts
@@ -117,6 +133,12 @@ iris %>%
 
 ---
 
+class: center, middle
+
+# Who can tell me something about the dataset?
+
+---
+
 class: left, middle
 
 # 2. Edit
@@ -124,6 +146,20 @@ class: left, middle
 This is where you are identifying your key message, choosing the best data to 
 convey your message, filtering and simplifying your data, and making numerical 
 adjustments.
+
+---
+
+class: center, middle
+
+# What is something we can explore?
+
+---
+
+class: left, middle
+
+# Average Sepal Length and Width by Species
+
+Let's create this together. 
 
 ```{r iris_edit, echo = FALSE, message = FALSE}
 sum_iris <- iris %>% 
@@ -147,7 +183,35 @@ sum_iris %>%
     kbl() %>%
     kable_material(c("striped", "hover"))
 ```
+---
 
+class: left, middle
+
+# Difference from the Average for Each Row
+
+Let's create this together. 
+
+```{r difference, echo = FALSE, message = FALSE}
+iris %>% 
+    select(Sepal.Length,
+           Sepal.Width,
+           Species,
+           mean_sepal_length,
+           mean_sepal_width,
+           percent_from_avg_l,
+           percent_from_avg_w) %>% 
+    mutate(percent_from_avg_l = round(percent_from_avg_l, 3),
+           percent_from_avg_w = round(percent_from_avg_w, 3)) %>% 
+    rename(`Sepal Length` = Sepal.Length,
+           `Sepal Width` = Sepal.Width,
+           `Avg. Length` = mean_sepal_length,
+           `Avg. Width` = mean_sepal_width,
+           `Pct. Diff. Len.` = percent_from_avg_l,
+           `Pct. Diff. Wid.` = percent_from_avg_w) %>%
+    head() %>%
+    kbl() %>%
+    kable_material(c("striped", "hover"))
+```
 
 ---
 
@@ -156,7 +220,8 @@ class: left, middle
 # 3. Plot
 
 At this step, you are choosing the proper plot type, ensuring your plot axes are 
-correct, title and labels are included, and color and typography are clear.
+correct, title and labels are included, and color and typography are clear 
+(more on that later).
 
 ```{r plot_iris, echo = FALSE}
 ggplot(sum_iris, aes(x = reorder(Species, mean_sepal_length), 
@@ -176,10 +241,34 @@ ggplot(sum_iris, aes(x = reorder(Species, mean_sepal_length),
 
 class: left, middle
 
+```{r initial_scatter, echo = FALSE}
+ggplot(iris, aes(x = percent_from_avg_l, 
+                 y = percent_from_avg_w)) +
+    geom_point(color = "#1a3f6f") + 
+    geom_hline(yintercept = 0) + 
+    geom_vline(xintercept = 0) +
+    ggtitle("Percent Difference from Averages") +
+    xlab("Percent Difference from Length") +
+    ylab("Percent Difference from Width") +
+    scale_x_continuous(labels = percent_format()) +
+    scale_y_continuous(labels = percent_format()) +
+    theme(panel.background = element_blank(),
+          panel.grid = element_blank(),
+          axis.ticks = element_blank(),
+          legend.position = "none")
+```
+
+---
+
+class: left, middle
+
 # 4. Review
 
 Often overlooked due to expediency, ensuring the data is accurate will preempt 
 questions and enhance trust in the data. 
+
+--
+
 ```{r plot_review, echo = FALSE}
 ggplot(iris, aes(x = percent_from_avg_l, 
                  y = percent_from_avg_w, 
@@ -199,6 +288,7 @@ ggplot(iris, aes(x = percent_from_avg_l,
           axis.ticks = element_blank(),
           legend.position = "none")
 ```
+
 
 ---
 
