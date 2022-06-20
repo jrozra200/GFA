@@ -550,6 +550,8 @@ class: left, middle
     ![bad_y_axis](data_viz_files/temp_change.png)
 ]
 
+--
+
 .pull-right[
 
 &lt;img src="Data-Visualization_files/figure-html/temp-1.png" width="100%" /&gt;
@@ -572,7 +574,7 @@ class: left, middle
   
 - The y-axis increments shouldn't be awkward
     - Natural increments: (1s, 2s, 5s, 10s, etc.)
-    - Awkward increments: (3s, 6s, 6s, 8s, etc.)
+    - Awkward increments: (3s, 6s, 8s, 12s, etc.)
 
 ]
 
@@ -581,6 +583,136 @@ class: left, middle
 &lt;img src="Data-Visualization_files/figure-html/temp_2-1.png" width="100%" /&gt;
 
 ]
+
+---
+
+class: left, middle
+
+# Zero Baseline
+
+- With line charts, as we just saw, we want the y-axis to be the right size
+- With bar charts, we are interpreting area; because of this, we always start 
+at 0
+
+.pull-left[
+
+&lt;img src="Data-Visualization_files/figure-html/zero_bad-1.png" width="100%" /&gt;
+
+]
+
+--
+
+.pull-right[
+
+&lt;img src="Data-Visualization_files/figure-html/zero_good-1.png" width="100%" /&gt;
+
+]
+
+---
+
+class: left, middle
+
+# Zero Baseline
+
+.pull-left[
+
+- We can clearly see that MI has about half the total COVID Deaths as CA
+- Even this plot may still be misleading or hard to interpret: CA and MI have 
+vastly different populations (should probably be a percentage of population)
+
+]
+
+.pull-right[
+
+&lt;img src="Data-Visualization_files/figure-html/zero_good_2-1.png" width="100%" /&gt;
+
+]
+
+---
+
+class: left, middle
+
+# Order Bars in the Correct Order
+
+.pull-left[
+
+This is not good (look at the dates).
+
+![Bad COVID Data](data_viz_files/covid-ga-recreation.jpeg)
+
+]
+
+.pull-right[
+- Ordinal data should stay in order 
+    - Grades
+    - Dates
+    - Age groups (Child, Teen, Young Adult, Adult, etc)
+]
+
+
+---
+
+class: left, middle
+
+# Order Bars in the Correct Order
+
+Other categorical data should be reordered so the "highest" is on the left and 
+"lowest" is on the right.
+
+&lt;img src="Data-Visualization_files/figure-html/reorder-1.png" width="100%" /&gt;
+
+---
+
+class: left, middle
+
+# Too many lines on a plot
+
+When you have too many categories, you should split your plot into separate 
+"facets."
+
+.pull-left[
+
+&lt;img src="Data-Visualization_files/figure-html/too_many_lines-1.png" width="100%" /&gt;
+]
+
+--
+
+.pull-right[
+&lt;img src="Data-Visualization_files/figure-html/facets-1.png" width="100%" /&gt;
+]
+
+---
+
+class: left, middle
+
+# Negative Values
+
+.pull-left[
+![stand your ground](data_viz_files/stand_your_ground.png)
+]
+
+.pull-right[
+This is another example of what not to do.
+
+Any values under the x-axis or left of the y-axis are treated naturally as 
+negative values. It is misleading to flip the axes.
+]
+
+---
+
+class: left, middle
+
+# Need another exercise
+
+---
+
+class: left, middle
+
+# Learning More
+
+1. [SQL](https://www.edx.org/course/sql-for-data-science)
+2. [Tableau or other Data Visualization Tool](https://www.edx.org/course/data-representation-and-visualization-in-tableau)
+3. [Data analysis in R](https://www.edx.org/professional-certificate/harvardx-data-science)
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

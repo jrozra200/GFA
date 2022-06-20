@@ -36,6 +36,7 @@ library(mdsr)
 library(readr)
 library(stringr)
 library(lubridate)
+library(jsonlite)
 ```
 
 ```{r xaringan-themer, include = FALSE, warning = FALSE}
@@ -520,6 +521,8 @@ class: left, middle
     ![bad_y_axis](data_viz_files/temp_change.png)
 ]
 
+--
+
 .pull-right[
 
 ```{r temp, fig.height = 8}
@@ -561,7 +564,7 @@ class: left, middle
   
 - The y-axis increments shouldn't be awkward
     - Natural increments: (1s, 2s, 5s, 10s, etc.)
-    - Awkward increments: (3s, 6s, 6s, 8s, etc.)
+    - Awkward increments: (3s, 6s, 8s, 12s, etc.)
 
 ]
 
@@ -594,9 +597,36 @@ class: left, middle
 - With bar charts, we are interpreting area; because of this, we always start 
 at 0
 
---
-
 .pull-left[
+
+```{r zero_bad, fig.height = 7}
+# dat <- fromJSON("https://data.cdc.gov/resource/9mfq-cb36.json") %>% 
+#     write.csv(., "data_viz_files/covid_data_06202022.csv", row.names = FALSE)
+
+dat <- read_csv("data_viz_files/covid_data_06202022.csv") %>% 
+    select(submission_date,
+           state, 
+           tot_death) %>% 
+    mutate(submission_date = as_date(gsub("T00:00:00.000", "", submission_date)),
+           tot_death = as.numeric(tot_death)) %>% 
+    filter((state == "MI" | state == "CA")) %>%
+    filter((submission_date == "2022-03-09" | 
+                submission_date == "2022-03-11"))
+
+ggplot(dat, aes(x = state, y = tot_death)) + 
+    geom_bar(stat = "identity", fill = "#1a3f6f") + 
+    ggtitle("Total Deaths due to COVID-19\nCA vs MI",
+            subtitle = "Data as of March 2022") + 
+    scale_y_continuous(labels = comma_format()) +
+    coord_cartesian(ylim = c(33000, 87000)) + 
+    theme(panel.background = element_blank(),
+          axis.ticks = element_blank(), 
+          axis.title= element_blank(),
+          axis.text = element_text(size = 14),
+          plot.title = element_text(size = 18),
+          panel.grid.major.y = element_line(color = "light gray"),
+          panel.grid.major.x = element_blank())
+```
 
 ]
 
@@ -604,15 +634,206 @@ at 0
 
 .pull-right[
 
+```{r zero_good, fig.height = 7}
+ggplot(dat, aes(x = state, y = tot_death)) + 
+    geom_bar(stat = "identity", fill = "#1a3f6f") + 
+    ggtitle("Total Deaths due to COVID-19\nCA vs MI",
+            subtitle = "Data as of March 2022") + 
+    scale_y_continuous(labels = comma_format()) + 
+    theme(panel.background = element_blank(),
+          axis.ticks = element_blank(), 
+          axis.title= element_blank(),
+          axis.text = element_text(size = 14),
+          plot.title = element_text(size = 18),
+          panel.grid.major.y = element_line(color = "light gray"),
+          panel.grid.major.x = element_blank())
+```
+
 ]
 
-# Order Bars in the correct order
+---
 
-Covid GA data
+class: left, middle
 
-# Negative goes left or down, positive goes right or up
+# Zero Baseline
 
-Stand your ground 
+.pull-left[
+
+- We can clearly see that MI has about half the total COVID Deaths as CA
+- Even this plot may still be misleading or hard to interpret: CA and MI have 
+vastly different populations (should probably be a percentage of population)
+
+]
+
+.pull-right[
+
+```{r zero_good_2, fig.height = 7}
+ggplot(dat, aes(x = state, y = tot_death)) + 
+    geom_bar(stat = "identity", fill = "#1a3f6f") + 
+    ggtitle("Total Deaths due to COVID-19\nCA vs MI",
+            subtitle = "Data as of March 2022") + 
+    scale_y_continuous(labels = comma_format()) + 
+    theme(panel.background = element_blank(),
+          axis.ticks = element_blank(), 
+          axis.title= element_blank(),
+          axis.text = element_text(size = 14),
+          plot.title = element_text(size = 18),
+          panel.grid.major.y = element_line(color = "light gray"),
+          panel.grid.major.x = element_blank())
+```
+
+]
+
+---
+
+class: left, middle
+
+# Order Bars in the Correct Order
+
+.pull-left[
+
+This is not good (look at the dates).
+
+![Bad COVID Data](data_viz_files/covid-ga-recreation.jpeg)
+
+]
+
+.pull-right[
+- Ordinal data should stay in order 
+    - Grades
+    - Dates
+    - Age groups (Child, Teen, Young Adult, Adult, etc)
+]
+
+
+---
+
+class: left, middle
+
+# Order Bars in the Correct Order
+
+Other categorical data should be reordered so the "highest" is on the left and 
+"lowest" is on the right.
+
+```{r reorder}
+dat <- read_csv("data_viz_files/covid_data_06202022.csv") %>% 
+    select(submission_date,
+           state, 
+           tot_death, 
+           tot_cases) %>% 
+    filter(state %in% c("MD", "DE", "CA", "MI")) %>% 
+    mutate(death_to_case_rate = tot_death / tot_cases)
+
+max_date <- dat %>% 
+    group_by(state) %>% 
+    summarise(max_date = max(submission_date))
+
+dat <- dat %>% 
+    inner_join(max_date, by = c("submission_date" = "max_date", "state" = "state"))
+
+ggplot(dat, aes(x = reorder(state, -death_to_case_rate), y = death_to_case_rate)) + 
+    geom_bar(stat = "identity", fill = "#1a3f6f") + 
+    ggtitle("Total Deaths per Confimed COVID-19 Case",
+            subtitle = "Data as of March 2022") + 
+    scale_y_continuous(labels = comma_format()) + 
+    theme(panel.background = element_blank(),
+          axis.ticks = element_blank(), 
+          axis.title= element_blank(),
+          axis.text = element_text(size = 14),
+          plot.title = element_text(size = 18),
+          panel.grid.major.y = element_line(color = "light gray"),
+          panel.grid.major.x = element_blank())
+```
+
+---
+
+class: left, middle
+
+# Too many lines on a plot
+
+When you have too many categories, you should split your plot into separate 
+"facets."
+
+.pull-left[
+
+```{r too_many_lines, fig.height = 7}
+dat <- read_csv("data_viz_files/covid_data_06202022.csv") %>% 
+    select(submission_date,
+           state, 
+           tot_death, 
+           tot_cases) %>% 
+    mutate(death_to_case_rate = tot_death / tot_cases)
+
+ggplot(dat, aes(x = submission_date, 
+                y = death_to_case_rate, 
+                group = state, 
+                color = state)) + 
+    geom_line() + 
+    ggtitle("Total Deaths per Confimed COVID-19 Case over Time") + 
+    scale_y_continuous(labels = comma_format()) + 
+    theme(panel.background = element_blank(),
+          axis.ticks = element_blank(), 
+          axis.title = element_blank(),
+          axis.text = element_text(size = 14),
+          plot.title = element_text(size = 18),
+          panel.grid.major.y = element_line(color = "light gray"),
+          panel.grid.major.x = element_blank(),
+          legend.position = "top",
+          legend.title = element_blank(), 
+          legend.key = element_blank())
+```
+]
+
+--
+
+.pull-right[
+```{r facets, fig.height = 7}
+ggplot(dat, aes(x = submission_date, 
+                y = death_to_case_rate)) + 
+    geom_line(color = "#1a3f6f") + 
+    ggtitle("Total Deaths per Confimed COVID-19 Case over Time") + 
+    scale_y_continuous(labels = comma_format()) + 
+    facet_wrap(~ state) + 
+    theme(panel.background = element_blank(),
+          axis.ticks = element_blank(), 
+          axis.title = element_blank(),
+          axis.text = element_text(size = 14),
+          plot.title = element_text(size = 18), 
+          strip.background = element_blank(), 
+          panel.grid.major.y = element_line(color = "light gray"),
+          panel.grid.major.x = element_blank())
+```
+]
+
+---
+
+class: left, middle
+
+# Negative Values
+
+.pull-left[
+![stand your ground](data_viz_files/stand_your_ground.png)
+]
+
+.pull-right[
+This is another example of what not to do.
+
+Any values under the x-axis or left of the y-axis are treated naturally as 
+negative values. It is misleading to flip the axes.
+]
+
+---
+
+class: left, middle
 
 # Need another exercise
-# What's next? Training and such
+
+---
+
+class: left, middle
+
+# Learning More
+
+1. [SQL](https://www.edx.org/course/sql-for-data-science)
+2. [Tableau or other Data Visualization Tool](https://www.edx.org/course/data-representation-and-visualization-in-tableau)
+3. [Data analysis in R](https://www.edx.org/professional-certificate/harvardx-data-science)
