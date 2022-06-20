@@ -33,6 +33,9 @@ library(scales)
 library(ggplot2)
 library(RColorBrewer)
 library(mdsr)
+library(readr)
+library(stringr)
+library(lubridate)
 ```
 
 ```{r xaringan-themer, include = FALSE, warning = FALSE}
@@ -101,7 +104,7 @@ class: left, middle
 
 ## [Open the data in Google Sheets](https://docs.google.com/spreadsheets/d/1urFs4EiL2DpRT-JVdxqKS9kWyG9051qoZ7B4oxWNsF8/edit?usp=sharing)
 
-- Make a copy of the spreadsheet for you to edit
+- Make a copy of the spreadsheet so you can edit!
 - [https://tinyurl.com/GFA-iris-google-sheets](https://tinyurl.com/GFA-iris-google-sheets)
 
 ---
@@ -221,7 +224,7 @@ class: left, middle
 
 At this step, you are choosing the proper plot type, ensuring your plot axes are 
 correct, title and labels are included, and color and typography are clear 
-(more on that later).
+(more on that shortly).
 
 ```{r plot_iris, echo = FALSE}
 ggplot(sum_iris, aes(x = reorder(Species, mean_sepal_length), 
@@ -497,7 +500,6 @@ class: left, middle
 
 # Let the Data Speak for Itself
 
-.pull-left[
 Do not use any bs to make the graph "pretty." A clean crisp chart allows the 
 reader to focus on the data and the message of the story.
 
@@ -507,9 +509,110 @@ This means:
 2. No "pretty" colors (more on this soon)
 3. No heavy grid lines
 4. NEVER NEVER NEVER a pie chart (though the WSJ doesn't agree with me)
+
+---
+
+class: left, middle
+
+# Misrepresenting the Trend
+
+.pull-left[
+    ![bad_y_axis](data_viz_files/temp_change.png)
 ]
 
 .pull-right[
-This is bad... e
+
+```{r temp, fig.height = 8}
+dat <- read_csv("data_viz_files/tas_timeseries_annual_cru_1901-2020_USA.csv") %>% 
+    select(year, `United States`) %>% 
+    rename(temp = `United States`) %>% 
+    mutate(year = as_date(paste0(year, "-01-01")),
+           temp = (temp * 1.8) + 32)
+
+ggplot(dat, aes(x = year, y = temp)) + 
+    geom_line(size = 1.25) + 
+    scale_y_continuous(limits = c(mean(dat$temp) - 4, mean(dat$temp) + 4)) + 
+    ggtitle("Average US Temperature in Fahrenheit\n1901 - 2020") + 
+    theme(panel.background = element_blank(),
+          axis.ticks = element_blank(), 
+          axis.title= element_blank(),
+          axis.text = element_text(size = 14),
+          plot.title = element_text(size = 18),
+          panel.grid.major.y = element_line(color = "light gray"),
+          panel.grid.major.x = element_blank())
+
+```
+
 ]
 
+---
+
+class: left, middle
+
+# Misrepresenting the Trend
+
+.pull-left[
+
+- The data should fill about 2/3 of the y-axis height
+  
+- The line should not be too thick or thin
+  
+- The grid shouldn't be thicker than the line
+  
+- The y-axis increments shouldn't be awkward
+    - Natural increments: (1s, 2s, 5s, 10s, etc.)
+    - Awkward increments: (3s, 6s, 6s, 8s, etc.)
+
+]
+
+.pull-right[
+
+```{r temp_2, fig.height = 8}
+ggplot(dat, aes(x = year, y = temp)) + 
+    geom_line(size = 1.25) + 
+    scale_y_continuous(limits = c(mean(dat$temp) - 4, mean(dat$temp) + 4)) + 
+    ggtitle("Average US Temperature in Fahrenheit\n1901 - 2020") + 
+    theme(panel.background = element_blank(),
+          axis.ticks = element_blank(), 
+          axis.title= element_blank(),
+          axis.text = element_text(size = 14),
+          plot.title = element_text(size = 18),
+          panel.grid.major.y = element_line(color = "light gray"),
+          panel.grid.major.x = element_blank())
+
+```
+
+]
+
+---
+
+class: left, middle
+
+# Zero Baseline
+
+- With line charts, as we just saw, we want the y-axis to be the right size
+- With bar charts, we are interpreting area; because of this, we always start 
+at 0
+
+--
+
+.pull-left[
+
+]
+
+--
+
+.pull-right[
+
+]
+
+# Order Bars in the correct order
+
+Covid GA data
+
+# Negative goes left or down, positive goes right or up
+
+Stand your ground 
+
+# Need another exercise
+# What's next? Training and such
