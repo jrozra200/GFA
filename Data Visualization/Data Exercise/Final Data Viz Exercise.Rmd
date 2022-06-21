@@ -37,8 +37,8 @@ this was used as a proxy for the popularity of the car.
 
 To access the data, please click the option that works for you below:
 
-- Microsoft Excel (download the spreadsheet)
-- Google Sheets (copy the sheet to your own drive)
+- [Microsoft Excel](https://drive.google.com/drive/u/1/folders/1JOr0jqhla5gZ2STOXuplNlV-a61DYCD8) (download the spreadsheet)
+- [Google Sheets](https://docs.google.com/spreadsheets/d/10Gyloc1RvPy-URF6IH5hZZq0hiqexPyofAGmbRUuu2w/edit?usp=sharing) (copy the sheet to your own drive)
 
 ## Questions to Answer
 
