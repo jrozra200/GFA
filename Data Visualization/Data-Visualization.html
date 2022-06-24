@@ -43,7 +43,7 @@ background-image: url(data_viz_files/gfa_logo_clear.png);
 background-size: contain;
 background-repeat: no-repeat;
 position: absolute;
-bottom:-4.5em;left:1em;
+bottom:-4em;left:1em;
 }
 </style>
 <script>(function () {
@@ -102,23 +102,27 @@ class: center, middle
 # Where Else is this "Expertise" Coming From?
 
 ![mdsr](data_viz_files/mdsr.png)
+---
+
+class: center, middle
+
+# It's Friday afternoon and y'all have been at this for a few days now... I am going to try to make this as interactive as possible. Please stop me to ask questions at any point!
 
 ---
 
 class: left, middle
 
-# Getting Setup for In-Class Exercise
+# So... Let's Get Setup for the First Exercise
 
-## [Download and open (in Excel) the Iris dataset](https://github.com/jrozra200/GFA/blob/main/Data%20Visualization/Data%20Exercise/iris_data.csv) OR
+## [Download and open, in Excel, the Iris dataset](https://tinyurl.com/GFA-data-download) OR
 
-- PREFERRED - but only if you already have Microsoft Excel installed! (I know 
-it says Google Sheets... but trust me here.)
-- [https://tinyurl.com/iris-google-sheets](https://tinyurl.com/iris-google-sheets)
+- Only if you already have Microsoft Excel installed! 
+- [https://tinyurl.com/GFA-data-download](https://tinyurl.com/GFA-data-download)
 
-## [Open the data in Google Sheets](https://docs.google.com/spreadsheets/d/1urFs4EiL2DpRT-JVdxqKS9kWyG9051qoZ7B4oxWNsF8/edit?usp=sharing)
+## [Open the data in Google Sheets](https://tinyurl.com/GFA-data-google-sheets)
 
 - Make a copy of the spreadsheet so you can edit!
-- [https://tinyurl.com/GFA-iris-google-sheets](https://tinyurl.com/GFA-iris-google-sheets)
+- [https://tinyurl.com/GFA-data-google-sheets](https://tinyurl.com/GFA-data-google-sheets)
 
 ---
 
@@ -127,6 +131,7 @@ class: center, middle
 # How to Create Effective Charts
 
 ![data_viz_process](data_viz_files/process.png)
+### *Really the title of this slide should be "How to do Data Analysis"*
 
 ---
 
@@ -134,8 +139,8 @@ class: left, middle
 
 # 1. Research
 
-This is where you are finding, exploring, and understanding the limitations of 
-your data.
+In the first step of data visualization you are finding, exploring, and 
+understanding the limitations of your data.
 
 &lt;table class=" lightable-material lightable-striped lightable-hover" style='font-family: "Source Sans Pro", helvetica, sans-serif; margin-left: auto; margin-right: auto;'&gt;
  &lt;thead&gt;
@@ -183,13 +188,6 @@ your data.
    &lt;td style="text-align:right;"&gt; 0.2 &lt;/td&gt;
    &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
   &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 5.4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.7 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.4 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
-  &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
@@ -205,15 +203,46 @@ class: left, middle
 
 # 2. Edit
 
-This is where you are identifying your key message, choosing the best data to 
-convey your message, filtering and simplifying your data, and making numerical 
-adjustments.
+
+.pull-left[
+In the **Edit** step you are:
+
+1. Identifying your key message
+2. Choosing the best data to convey your message
+3. Filtering and simplifying your data
+4. Making numerical adjustments
+]
+
+.pull-right[
+&lt;table class=" lightable-material lightable-striped lightable-hover" style='font-family: "Source Sans Pro", helvetica, sans-serif; margin-left: auto; margin-right: auto;'&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Species &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Avg Sepal Length &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.006 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; versicolor &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.936 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; virginica &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.588 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
 
 ---
 
 class: center, middle
 
-# What is something we can explore?
+# What is something *else* we can explore?
 
 ---
 
@@ -260,8 +289,8 @@ Let's create this together.
 &lt;table class=" lightable-material lightable-striped lightable-hover" style='font-family: "Source Sans Pro", helvetica, sans-serif; margin-left: auto; margin-right: auto;'&gt;
  &lt;thead&gt;
   &lt;tr&gt;
-   &lt;th style="text-align:right;"&gt; Sepal Length &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Sepal Width &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; S. Len. &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; S. Wid. &lt;/th&gt;
    &lt;th style="text-align:left;"&gt; Species &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; Avg. Length &lt;/th&gt;
    &lt;th style="text-align:right;"&gt; Avg. Width &lt;/th&gt;
@@ -333,15 +362,23 @@ class: left, middle
 
 # 3. Plot
 
-At this step, you are choosing the proper plot type, ensuring your plot axes are 
-correct, title and labels are included, and color and typography are clear 
-(more on that shortly).
+At this step:
+1. You are choosing the proper plot type
+2. Ensuring your plot axes are correct
+3. Title and labels are included
+4. Color and typography are clear
+
+*This is the reason we are here - we'll dive deeper into this shortly.*
+
+---
+
+class: center, middle
 
 &lt;img src="Data-Visualization_files/figure-html/plot_iris-1.png" width="100%" /&gt;
 
 ---
 
-class: left, middle
+class: center, middle
 
 &lt;img src="Data-Visualization_files/figure-html/initial_scatter-1.png" width="100%" /&gt;
 
@@ -354,7 +391,9 @@ class: left, middle
 Often overlooked due to expediency, ensuring the data is accurate will preempt 
 questions and enhance trust in the data. 
 
---
+---
+
+class: center, middle
 
 &lt;img src="Data-Visualization_files/figure-html/plot_review-1.png" width="100%" /&gt;
 
@@ -367,39 +406,56 @@ class: middle, center
 
 ---
 
-class: top, left
+class: middle, left
 
 # A taxonomy for data graphics
 
 Taxonomy, smaxonomy. That's just a fancy name for saying you got to know the 
 finer parts of a data viz before you, too, can make fine data viz. 
 
-.pull-left[
-Data graphics can be understood in terms of four basic elements: 
+---
 
-1. Visual cues
-2. Coordinate systems
+class: middle, left
+
+.pull-left[
+#### Data graphics can be understood in terms of four basic elements: 
+
+1. Visual cues 
+    - We'll dive deeper into these today
+2. Coordinate systems 
+    - We'll focus on Cartesian coordinates but there are others
+    - PS: Pie charts are bad. 
 3. Scale
-4. Context
+    - Logarithmic vs. Base 10
+4. Context 
+    - Does the reader know what we are talking about?
+    - Can the reader easily figure out the message?
 ]
 
 .pull-right[
-*And two bonus items:* 
+#### And two bonus items:
 
 1. Facets
+    - Having multiple panels presenting similar data
 2. Layers
+    - Adding additional information on the original plot
 ]
 
 ---
 
-class: top, left
+class: middle, left
 
 # Visual Cues 
 
 **These are the building blocks of data viz.** Visual cues are graphical 
-elements that draw the eye to what we want our audience to focus upon. Human 
-beings' ability to perceive difference in magnitude accurately decends in this 
-order.
+elements that draw the eye to what we want our audience to focus upon. 
+
+---
+
+class: middle, center
+
+Human beings' ability to perceive difference in magnitude accurately descends in 
+this order.
 
 &lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
 &lt;caption&gt;Visual cues and what they signify.&lt;/caption&gt;
@@ -463,10 +519,7 @@ order.
 
 # Position, Length, &amp; Area
 
-Because I feel like this is getting a little too much me talking at you, let us 
-do an example together.
-
-Someone tell me what they see in this plot, especially as it relates to 
+What do you see in this plot, especially as it relates to 
 **position**, **length**, and **area**? Which letter has the most?
 
 
@@ -537,7 +590,7 @@ reader to focus on the data and the message of the story.
 This means:
 
 1. No 3D rendering EVER
-2. No "pretty" colors (more on this soon)
+2. No "pretty" colors 
 3. No heavy grid lines
 4. NEVER NEVER NEVER a pie chart (though the WSJ doesn't agree with me)
 
@@ -705,7 +758,39 @@ class: left, middle
 
 # Another Exercise Together!
 
-https://tinyurl.com/GFA-DV-Final
+[https://tinyurl.com/GFA-Final-Exercise](https://tinyurl.com/GFA-Final-Exercise)
+
+---
+
+class: left, middle
+
+## Learning More
+
+.pull-left[
+If you got to this slide and are thinking to yourself... "I'm good on knowing 
+Data Visualization now," then this presentation is a good baseline for you. 
+
+To understand a bit more, buy and read 
+[Guide to Information Graphics](https://www.amazon.com/Street-Journal-Guide-Information-Graphics/dp/0393347281/ref=sr_1_1)
+]
+
+.pull-right[
+![data_viz_book](data_viz_files/data_viz_book.jpeg)
+]
+
+
+---
+
+class: center, middle
+
+# Learning More
+
+If, on the other hand, you are feeling an itchiness inside to learn more and 
+more and more - AWESOME. Welcome to your journey.
+
+![nerd school](data_viz_files/nerd_school.gif)  
+
+*"If I don't get into this nerd school, I'm going to lose my mind" - Hiro Hamada*
 
 ---
 
@@ -713,9 +798,29 @@ class: left, middle
 
 # Learning More
 
-1. [SQL](https://www.edx.org/course/sql-for-data-science)
-2. [Tableau or other Data Visualization Tool](https://www.edx.org/course/data-representation-and-visualization-in-tableau)
+1. [Tableau or other Data Visualization Tool](https://www.edx.org/course/data-representation-and-visualization-in-tableau)
+    - Tableau is the defacto "business intelligence" tool that companies use
+    - It is super powerful for creating many types of data visualizations in 
+    many formats
+2. [SQL](https://www.edx.org/course/sql-for-data-science)
+    - Tableau, however powerful it may be, can only visualize the data which it 
+    has access
+    - In many cases, data is stored in databases and access via a language 
+    called SQL
 3. [Data analysis in R](https://www.edx.org/professional-certificate/harvardx-data-science)
+    - If you start creating SQL code and want to do more, R may be the next 
+    best languague to learn
+    - Harvard has some amazing, free, resources on edx to learn data and 
+    computer science. 
+
+---
+
+class: center, middle
+
+# Thank You!
+
+If you have any questions as you go through your fellowship and beyond, please 
+reach out!
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

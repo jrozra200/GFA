@@ -45,7 +45,8 @@ library(jsonlite)
 library(xaringanthemer)
 style_duo_accent(primary_color = "#1a3f6f", 
                  secondary_color = "#52c0ea",
-                 code_font_size = "0.5rem")
+                 code_font_size = "0.5rem",
+                 text_font_size = "1.25rem")
 
 # "#f24244"
 ```
@@ -56,7 +57,7 @@ library(xaringanExtra)
 use_logo(image_url = "data_viz_files/gfa_logo_clear.png",
          exclude_class = "hide_logo",
          link_url = "https://www.govern4america.org/",
-         position = css_position(left = "1em", bottom = "-4.5em"))
+         position = css_position(left = "1em", bottom = "-4em"))
 ```
 
 .pull-left[
@@ -93,23 +94,27 @@ class: center, middle
 # Where Else is this "Expertise" Coming From?
 
 ![mdsr](data_viz_files/mdsr.png)
+---
+
+class: center, middle
+
+# It's Friday afternoon and y'all have been at this for a few days now... I am going to try to make this as interactive as possible. Please stop me to ask questions at any point!
 
 ---
 
 class: left, middle
 
-# Getting Setup for In-Class Exercise
+# So... Let's Get Setup for the First Exercise
 
-## [Download and open (in Excel) the Iris dataset](https://github.com/jrozra200/GFA/blob/main/Data%20Visualization/Data%20Exercise/iris_data.csv) OR
+## [Download and open, in Excel, the Iris dataset](https://tinyurl.com/GFA-data-download) OR
 
-- PREFERRED - but only if you already have Microsoft Excel installed! (I know 
-it says Google Sheets... but trust me here.)
-- [https://tinyurl.com/iris-google-sheets](https://tinyurl.com/iris-google-sheets)
+- Only if you already have Microsoft Excel installed! 
+- [https://tinyurl.com/GFA-data-download](https://tinyurl.com/GFA-data-download)
 
-## [Open the data in Google Sheets](https://docs.google.com/spreadsheets/d/1urFs4EiL2DpRT-JVdxqKS9kWyG9051qoZ7B4oxWNsF8/edit?usp=sharing)
+## [Open the data in Google Sheets](https://tinyurl.com/GFA-data-google-sheets)
 
 - Make a copy of the spreadsheet so you can edit!
-- [https://tinyurl.com/GFA-iris-google-sheets](https://tinyurl.com/GFA-iris-google-sheets)
+- [https://tinyurl.com/GFA-data-google-sheets](https://tinyurl.com/GFA-data-google-sheets)
 
 ---
 
@@ -118,6 +123,7 @@ class: center, middle
 # How to Create Effective Charts
 
 ![data_viz_process](data_viz_files/process.png)
+### *Really the title of this slide should be "How to do Data Analysis"*
 
 ---
 
@@ -125,15 +131,15 @@ class: left, middle
 
 # 1. Research
 
-This is where you are finding, exploring, and understanding the limitations of 
-your data.
+In the first step of data visualization you are finding, exploring, and 
+understanding the limitations of your data.
 
 ```{r iris_explore, echo = FALSE, message = FALSE}
 data("iris")
 
 iris <- tibble(iris)
 iris %>% 
-    head() %>%
+    head(n = 5) %>%
     kbl() %>%
     kable_material(c("striped", "hover"))
 ```
@@ -150,15 +156,36 @@ class: left, middle
 
 # 2. Edit
 
-This is where you are identifying your key message, choosing the best data to 
-convey your message, filtering and simplifying your data, and making numerical 
-adjustments.
+
+.pull-left[
+In the **Edit** step you are:
+
+1. Identifying your key message
+2. Choosing the best data to convey your message
+3. Filtering and simplifying your data
+4. Making numerical adjustments
+]
+
+.pull-right[
+```{r edit, echo = FALSE, message = FALSE}
+sum_iris <- iris %>% 
+    group_by(Species) %>% 
+    summarise(mean_sepal_length = mean(Sepal.Length),
+              mean_sepal_width = mean(Sepal.Width)) 
+
+sum_iris %>% 
+    select(Species, mean_sepal_length) %>% 
+    rename(`Avg Sepal Length` = mean_sepal_length) %>% 
+    kbl() %>%
+    kable_material(c("striped", "hover"))
+```
+]
 
 ---
 
 class: center, middle
 
-# What is something we can explore?
+# What is something *else* we can explore?
 
 ---
 
@@ -169,11 +196,6 @@ class: left, middle
 Let's create this together. 
 
 ```{r iris_edit, echo = FALSE, message = FALSE}
-sum_iris <- iris %>% 
-    group_by(Species) %>% 
-    summarise(mean_sepal_length = mean(Sepal.Length),
-              mean_sepal_width = mean(Sepal.Width))
-
 iris <- iris %>% 
     left_join(sum_iris, by = "Species") %>% 
     mutate(percent_from_avg_l = (Sepal.Length - mean_sepal_length) / mean_sepal_length,
@@ -209,8 +231,8 @@ iris %>%
            percent_from_avg_w) %>% 
     mutate(percent_from_avg_l = round(percent_from_avg_l, 3),
            percent_from_avg_w = round(percent_from_avg_w, 3)) %>% 
-    rename(`Sepal Length` = Sepal.Length,
-           `Sepal Width` = Sepal.Width,
+    rename(`S. Len.` = Sepal.Length,
+           `S. Wid.` = Sepal.Width,
            `Avg. Length` = mean_sepal_length,
            `Avg. Width` = mean_sepal_width,
            `Pct. Diff. Len.` = percent_from_avg_l,
@@ -226,9 +248,17 @@ class: left, middle
 
 # 3. Plot
 
-At this step, you are choosing the proper plot type, ensuring your plot axes are 
-correct, title and labels are included, and color and typography are clear 
-(more on that shortly).
+At this step:
+1. You are choosing the proper plot type
+2. Ensuring your plot axes are correct
+3. Title and labels are included
+4. Color and typography are clear
+
+*This is the reason we are here - we'll dive deeper into this shortly.*
+
+---
+
+class: center, middle
 
 ```{r plot_iris, echo = FALSE}
 ggplot(sum_iris, aes(x = reorder(Species, mean_sepal_length), 
@@ -240,13 +270,14 @@ ggplot(sum_iris, aes(x = reorder(Species, mean_sepal_length),
     ylab("Sepal Length (inches)") +
     coord_flip() + 
     theme(panel.background = element_blank(),
-          panel.grid = element_blank(),
+          panel.grid.major.y = element_blank(),
+          panel.grid.major.x = element_line(color = "light gray"),
           axis.ticks = element_blank())
 ```
 
 ---
 
-class: left, middle
+class: center, middle
 
 ```{r initial_scatter, echo = FALSE}
 ggplot(iris, aes(x = percent_from_avg_l, 
@@ -255,8 +286,8 @@ ggplot(iris, aes(x = percent_from_avg_l,
     geom_hline(yintercept = 0) + 
     geom_vline(xintercept = 0) +
     ggtitle("Percent Difference from Averages") +
-    xlab("Percent Difference from Length") +
-    ylab("Percent Difference from Width") +
+    xlab("Percent Difference from Average Length") +
+    ylab("Percent Difference from Average Width") +
     scale_x_continuous(labels = percent_format()) +
     scale_y_continuous(labels = percent_format()) +
     theme(panel.background = element_blank(),
@@ -274,7 +305,9 @@ class: left, middle
 Often overlooked due to expediency, ensuring the data is accurate will preempt 
 questions and enhance trust in the data. 
 
---
+---
+
+class: center, middle
 
 ```{r plot_review, echo = FALSE}
 ggplot(iris, aes(x = percent_from_avg_l, 
@@ -286,8 +319,8 @@ ggplot(iris, aes(x = percent_from_avg_l,
     geom_vline(xintercept = 0) +
     ggtitle("Percent Difference from Averages", 
             subtitle = "Is the Red Point an Outlier or Bad Data?") +
-    xlab("Percent Difference from Length") +
-    ylab("Percent Difference from Width") +
+    xlab("Percent Difference from Average Length") +
+    ylab("Percent Difference from Average Width") +
     scale_x_continuous(labels = percent_format()) +
     scale_y_continuous(labels = percent_format()) +
     theme(panel.background = element_blank(),
@@ -305,39 +338,56 @@ class: middle, center
 
 ---
 
-class: top, left
+class: middle, left
 
 # A taxonomy for data graphics
 
 Taxonomy, smaxonomy. That's just a fancy name for saying you got to know the 
 finer parts of a data viz before you, too, can make fine data viz. 
 
-.pull-left[
-Data graphics can be understood in terms of four basic elements: 
+---
 
-1. Visual cues
-2. Coordinate systems
+class: middle, left
+
+.pull-left[
+#### Data graphics can be understood in terms of four basic elements: 
+
+1. Visual cues 
+    - We'll dive deeper into these today
+2. Coordinate systems 
+    - We'll focus on Cartesian coordinates but there are others
+    - PS: Pie charts are bad. 
 3. Scale
-4. Context
+    - Logarithmic vs. Base 10
+4. Context 
+    - Does the reader know what we are talking about?
+    - Can the reader easily figure out the message?
 ]
 
 .pull-right[
-*And two bonus items:* 
+#### And two bonus items:
 
 1. Facets
+    - Having multiple panels presenting similar data
 2. Layers
+    - Adding additional information on the original plot
 ]
 
 ---
 
-class: top, left
+class: middle, left
 
 # Visual Cues 
 
 **These are the building blocks of data viz.** Visual cues are graphical 
-elements that draw the eye to what we want our audience to focus upon. Human 
-beings' ability to perceive difference in magnitude accurately decends in this 
-order.
+elements that draw the eye to what we want our audience to focus upon. 
+
+---
+
+class: middle, center
+
+Human beings' ability to perceive difference in magnitude accurately descends in 
+this order.
 
 ```{r viz_cue}
 tribble(
@@ -360,10 +410,7 @@ tribble(
 
 # Position, Length, & Area
 
-Because I feel like this is getting a little too much me talking at you, let us 
-do an example together.
-
-Someone tell me what they see in this plot, especially as it relates to 
+What do you see in this plot, especially as it relates to 
 **position**, **length**, and **area**? Which letter has the most?
 
 ```{r bad_good, echo = FALSE}
@@ -510,7 +557,7 @@ reader to focus on the data and the message of the story.
 This means:
 
 1. No 3D rendering EVER
-2. No "pretty" colors (more on this soon)
+2. No "pretty" colors 
 3. No heavy grid lines
 4. NEVER NEVER NEVER a pie chart (though the WSJ doesn't agree with me)
 
@@ -831,7 +878,39 @@ class: left, middle
 
 # Another Exercise Together!
 
-https://tinyurl.com/GFA-DV-Final
+[https://tinyurl.com/GFA-Final-Exercise](https://tinyurl.com/GFA-Final-Exercise)
+
+---
+
+class: left, middle
+
+## Learning More
+
+.pull-left[
+If you got to this slide and are thinking to yourself... "I'm good on knowing 
+Data Visualization now," then this presentation is a good baseline for you. 
+
+To understand a bit more, buy and read 
+[Guide to Information Graphics](https://www.amazon.com/Street-Journal-Guide-Information-Graphics/dp/0393347281/ref=sr_1_1)
+]
+
+.pull-right[
+![data_viz_book](data_viz_files/data_viz_book.jpeg)
+]
+
+
+---
+
+class: center, middle
+
+# Learning More
+
+If, on the other hand, you are feeling an itchiness inside to learn more and 
+more and more - AWESOME. Welcome to your journey.
+
+![nerd school](data_viz_files/nerd_school.gif)  
+
+*"If I don't get into this nerd school, I'm going to lose my mind" - Hiro Hamada*
 
 ---
 
@@ -839,6 +918,26 @@ class: left, middle
 
 # Learning More
 
-1. [SQL](https://www.edx.org/course/sql-for-data-science)
-2. [Tableau or other Data Visualization Tool](https://www.edx.org/course/data-representation-and-visualization-in-tableau)
+1. [Tableau or other Data Visualization Tool](https://www.edx.org/course/data-representation-and-visualization-in-tableau)
+    - Tableau is the defacto "business intelligence" tool that companies use
+    - It is super powerful for creating many types of data visualizations in 
+    many formats
+2. [SQL](https://www.edx.org/course/sql-for-data-science)
+    - Tableau, however powerful it may be, can only visualize the data which it 
+    has access
+    - In many cases, data is stored in databases and access via a language 
+    called SQL
 3. [Data analysis in R](https://www.edx.org/professional-certificate/harvardx-data-science)
+    - If you start creating SQL code and want to do more, R may be the next 
+    best languague to learn
+    - Harvard has some amazing, free, resources on edx to learn data and 
+    computer science. 
+
+---
+
+class: center, middle
+
+# Thank You!
+
+If you have any questions as you go through your fellowship and beyond, please 
+reach out!

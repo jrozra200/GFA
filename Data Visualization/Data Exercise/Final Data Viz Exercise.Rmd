@@ -2,7 +2,12 @@
 title: "GFA - Data Visualization Exercise"
 author: "Jake Rozran"
 date: '2022-06-24'
-output: pdf_document
+output: 
+    html_document:
+        toc: true
+        toc_float: 
+            collapsed: false
+            smooth_scroll: true
 ---
 
 ```{r setup, include = FALSE}
@@ -37,15 +42,15 @@ this was used as a proxy for the popularity of the car.
 
 To access the data, please click the option that works for you below:
 
-- [Microsoft Excel](https://drive.google.com/drive/u/1/folders/1JOr0jqhla5gZ2STOXuplNlV-a61DYCD8) (download the spreadsheet)
+- [Microsoft Excel](https://drive.google.com/file/d/196FfUaUGOm4gWbOi_K7VR_y3wmOPC0PM/view?usp=sharing) (download the spreadsheet)
 - [Google Sheets](https://docs.google.com/spreadsheets/d/10Gyloc1RvPy-URF6IH5hZZq0hiqexPyofAGmbRUuu2w/edit?usp=sharing) (copy the sheet to your own drive)
 
 ## Questions to Answer
 
-1. Research: 
-    - Explore the data to see what's in there
-    - What is the range, median, and mean for displacement (`disp`), year, # of 
-    engine cylinders (`cyl`), city mpg (`cty`), and highway mpg (`hwy`)?
+### 1. Research
+- Explore the data to see what's in there
+- (Optional) What is the range, median, and mean for displacement (`disp`), year, # of 
+engine cylinders (`cyl`), city mpg (`cty`), and highway mpg (`hwy`)?
 
 ```{r explore}
 mpg %>% 
@@ -54,10 +59,10 @@ mpg %>%
     kable_material(c("striped", "hover"))
 ```
 
-2. Research:
-    - Pick a car manufacturer
-    - How many models does they have that have been around from 1999 - 2008?
-    - Does one model have better or worse gas mileage than the others?
+### 2. Edit
+- Pick a car manufacturer
+- How many models does they have that have been around from 1999 - 2008?
+- Does one model have better or worse gas mileage than the others?
 
 ```{r research}
 mnf <- "ford"
@@ -74,20 +79,23 @@ max_mods <- mpg %>%
 ```
 
 Example:
-- Pick a car manufacturer: *`r mnf`*
-- How many models does they have? *`r models`*
+- Pick a car manufacturer: *`r mnf`*  
+- How many models does they have? *`r models`*  
 - Does one model have better or worse gas mileage than the others? *The mustang, *
 *which is the only car here, has slightly better gas mileage than the *
-*trucks/suvs.*
+*trucks/suvs.*  
 
-3. Plot:
-- Bar Chart (2 variables):
-    - Using the model that has been running the longest, make a bar chart that shows 
-    both the `cty` and `hwy` mpg over time
-    - Does that model have multiple `cyl` options? If so, plot those in separate 
-    panels (aka facets)
-    - Does that model [also] have multiple transmissions (`trans`), plot those 
-    in separate panels (facets)
+### 3. Plot
+
+Bar Chart: 
+1. Choose a model, make a bar chart that shows both the `cty` and `hwy` mpg over 
+time
+2. Does that model have multiple `cyl` options? If so, plot those in separate 
+panels (aka facets)
+
+Scatter Plot:
+1. Filter the data for 2008 only; make a scatter plot that has displacement 
+(`displ`) on the y-axis and highway gas mileage (`hwy`) on the x-axis.
 
 Example:
 
@@ -165,6 +173,24 @@ ggplot(plot_dat, aes(x = factor(year), y = mpg, group = mpg_type, fill = mpg_typ
           strip.background = element_blank())
 ```
 
-4. Review:
-    - Does anything stick out in your bar charts?
-    - If so, can you find an explanation for those things?
+```{r scatter_plot}
+plot_dat <- mpg %>% 
+    filter(year == 2008)
+
+ggplot(plot_dat, aes(x = hwy, y = displ)) +
+    geom_point(color = "#1a3f6f") +
+    ggtitle("Engine Displacement vs. Highway MPG in 2008") +
+    xlab("Highway (mpg)") +
+    ylab("Engine Displacement") +
+    theme(panel.background = element_blank(),
+          panel.grid.major.x = element_line(color = "light gray"),
+          panel.grid.major.y = element_line(color = "light gray"),
+          axis.ticks = element_blank(),
+          legend.position = "none",
+          strip.background = element_blank())
+
+```
+
+### 4. Review
+- Does anything stick out in your bar charts? How about in the scatter plot?
+- If so, can you find an explanation for those things?
