@@ -79,6 +79,7 @@ max_mods <- mpg %>%
 ```
 
 Example:
+
 - Pick a car manufacturer: *`r mnf`*  
 - How many models does they have? *`r models`*  
 - Does one model have better or worse gas mileage than the others? *The mustang, *
@@ -88,12 +89,14 @@ Example:
 ### 3. Plot
 
 Bar Chart: 
+
 1. Choose a model, make a bar chart that shows both the `cty` and `hwy` mpg over 
-time
+time  
 2. Does that model have multiple `cyl` options? If so, plot those in separate 
-panels (aka facets)
+panels (aka facets)  
 
 Scatter Plot:
+
 1. Filter the data for 2008 only; make a scatter plot that has displacement 
 (`displ`) on the y-axis and highway gas mileage (`hwy`) on the x-axis.
 
