@@ -2,9 +2,9 @@
 
 ## Contact Info
 
-**Name:** Jake Rozran
-**Email:** jacob.rozran@gmail.com
-**Schedule a Meeting:** Calendly(link TBD)
+**Name:** Jake Rozran  
+**Email:** jacob.rozran@gmail.com  
+**Schedule a Meeting:** Calendly(link TBD)  
 
 ## Lunch & Learn Information
 
