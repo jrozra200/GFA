@@ -21,21 +21,24 @@ in their current positions and beyond. I have broken this into objectives by
 specific topics:
 
 1. What is Data Science & Data Analysis? 
-2. Excel/Google Sheets
+    - Data Ethics
+3. Excel/Google Sheets
     - Import/export data using various formats
     - Transform, validate, and manipulate data
     - How and when to use pivot tables
     - Summarize data using appropriate data visualization techniques
     - Univariate and multivariate data visualization methods
-3. Tableau
+    - Data Ethics
+4. Tableau
     - Connecting to external data sources
     - Creating tables
     - Summarize data using appropriate data visualization techniques
     - Univariate and multivariate data visualization methods
     - Data mining vs. external communication
-3. SQL
+    - Data Ethics
+5. SQL
     - Access, transform, validate, and manipulate data
-4. R
+6. R
     - Learning R, RStudio, and RMarkdown
     - Importing data
     - Data visualization with `ggplot2`
