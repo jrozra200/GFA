@@ -165,4 +165,4 @@ class: center, middle
 
 # Evaluation!!!!
 
-How did I do? Please fill out this form (which still needs to be created).
+How did I do? Please fill out the feedback survey before you go!
