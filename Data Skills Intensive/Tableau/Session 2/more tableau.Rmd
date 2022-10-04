@@ -1,0 +1,182 @@
+---
+title: "Deeper into Tableau"
+subtitle: "Govern for America"  
+author: "Jake Rozran"
+date: "October 5, 2022"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      ratio: 16:9
+      countIncrementalSlides: true
+---
+
+class: center, middle
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+    fig.width = 9, 
+    fig.height = 3.5, 
+    fig.retina = 3,
+    out.width = "100%",
+    cache = FALSE,
+    echo = FALSE,
+    message = FALSE, 
+    warning = FALSE,
+    hiline = TRUE
+)
+```
+
+```{r xaringan-themer, include = FALSE, warning = FALSE}
+library(xaringanthemer)
+style_duo_accent(primary_color = "#1a3f6f", 
+                 secondary_color = "#52c0ea",
+                 code_font_size = "0.5rem",
+                 text_font_size = "1.25rem")
+
+# "#f24244"
+```
+
+```{r xaringan-logo, echo=FALSE}
+library(xaringanExtra)
+
+use_logo(image_url = "files/gfa_logo_clear.png",
+         exclude_class = "hide_logo",
+         link_url = "https://www.govern4america.org/",
+         position = css_position(left = "1em", bottom = "-4em"))
+```
+
+# Welcome Back!
+
+---
+
+class: left, middle
+
+# Quick Agenda
+
+1. Review last session
+    - Loading CSV (text) data
+    - Calculated Fields
+    - Measures vs. Dimensions
+    - Measure Names as Table Headers
+    - Measure Values as Table Text
+    - Filters
+    - Sorting Data
+2. Dive into Data Visualization
+    - Bar Charts & Scatter Plots
+    - Colors
+    - Tool Tips
+    - Size
+    - Creating copies of sheets
+
+---
+
+class: center, middle
+
+# LET'S GRAB OUR DATA!
+
+Same data as before. I'll pop it into the Zoom chat. 
+
+---
+
+class: center, middle
+
+# Review of last session.
+
+Let's recreate our table from last time. It will feel better to do it with some 
+previous experience.
+
+---
+
+class: left, middle
+
+# Steps to Create a table
+
+1. Load the data into Tableau
+2. Create calculated fields for:
+    - Average Population
+    - Median Population
+    - Minimum Population
+    - Maximum Population
+    - Lower Quartile of Population (25th Percentile)
+    - Upper Quartile of Population (75th Percentile)
+3. Add Zip Code, City, and State to rows
+4. Add Measure Names to Columns
+5. Filter Measure Names for the values we've created already
+6. Add Measure Values as text to populate table
+7. Move columns into their logical order
+8. Filter on a few zip codes
+
+---
+
+class: center, middle
+
+# Create a New Table Together!
+
+## How can we get the total 2016 population for each state?
+
+---
+
+class: center, middle
+
+# Create ANOTHER New Table Together!
+
+## Can we transform the last table to show us the total US Population in 2016?
+
+---
+
+class: center, middle
+
+# Let's pivot to data visualization
+
+## Plot Twist: It is actually WAY EASIER to create data viz than tables in Tableau... 
+
+Plot one: Can we see how the US population has changed over the years?
+
+What type of plot may show that best?
+
+---
+
+class: left, middle
+
+# Plot One
+
+1. Create a Line Chart
+2. Change the axis to not include zero
+3. Copy sheet and change it to a bar chart
+4. Change the axis TO include zero
+5. Change measure from continuous to discrete
+6. Copy sheet and include state as a color
+7. Sort state by population
+
+---
+
+class: center, middle
+
+# I'm Curious, though... in 2016, what was the breakdown of zip code population?
+
+Does anyone know any one-dimensional data graphics?
+
+---
+
+class: left, middle
+
+# Plot Two
+
+1. Add column as a row and select Histogram
+2. Add a filter for 2016
+3. Explain the distribution
+4. Change y axis to logarithmic
+
+---
+
+class: center, middle
+
+# Last for Today
+
+Can you create a line chart of three zipcodes that are interesting to you? 
+Show how the population has changed over time. 
+
