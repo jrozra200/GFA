@@ -75,7 +75,16 @@ class: center, middle
 
 # LET'S GRAB OUR DATA!
 
-Same data as before. I'll pop it into the Zoom chat. 
+New data! I'll pop it into the Zoom chat. Download all of these to the same 
+directory.
+
+---
+
+class: center, middle
+
+# Something new - multiple datasets
+
+Let's join some data in Tableau.
 
 ---
 
@@ -83,7 +92,7 @@ class: center, middle
 
 # Review of last session.
 
-Let's recreate a few visualizations from last time (and maybe a new one). 
+Let's create a few visualizations.
 
 ---
 
@@ -91,21 +100,9 @@ class: left, middle
 
 # Plot One
 
-1. Create a Line Chart
+1. Create a Line Chart - total hits per year
 2. Change the axis to not include zero
-3. Copy sheet and change it to a bar chart
-4. Change the axis TO include zero
-5. Change measure from continuous to discrete
-6. Copy sheet and include state as a color
-7. Sort state by population
-
----
-
-class: center, middle
-
-# I'm Curious, though... in 2016, what was the breakdown of zip code population?
-
-Does anyone know any one-dimensional data graphics?
+3. Let's filter year - there's too many years!
 
 ---
 
@@ -113,19 +110,35 @@ class: left, middle
 
 # Plot Two
 
-1. Add column as a row and select Histogram
-2. Add a filter for 2016
-3. Explain the distribution
-4. Change y axis to logarithmic
+3. Copy sheet and change it to a bar chart - total HR per year
+4. Change the axis TO include zero
+
+---
+
+class: left, middle
+
+# Plot Three
+
+6. Copy sheet and include team as a color
+7. Sort team by HR
 
 ---
 
 class: center, middle
 
-# Last for Today
+# I'm Curious, though... in 2021, what was the breakdown of hits per team?
 
-Can you create a line chart of three zipcodes that are interesting to you? 
-Show how the population has changed over time. 
+Does anyone know any one-dimensional data graphics?
+
+---
+
+class: left, middle
+
+# Plot Four
+
+1. Add column as a row and select Histogram
+2. Add a filter for 2021
+3. Explain the distribution
 
 ---
 
