@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Communicating Results</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Jake Rozran" />
+    <meta name="date" content="2022-10-19" />
+    <script src="external_communication_files/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Communicating Results
+]
+.subtitle[
+## Govern for America
+]
+.author[
+### Jake Rozran
+]
+.date[
+### October 19, 2022
+]
+
+---
+
+
+class: center, middle
+
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 110px;
+height: 128px;
+z-index: 0;
+background-image: url(files/gfa_logo_clear.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+bottom:-4em;left:1em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('a')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = 'https://www.govern4america.org/'
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+# Welcome Back!
+
+---
+
+class: left, middle
+
+# Quick Agenda
+
+1. Review last session: Data Visualization
+    - Bar Charts &amp; Scatter Plots
+    - Colors
+    - Tool Tips
+    - Size
+    - Creating copies of sheets
+2. Data Mining vs. External Communication
+    - Analysis vs. Reporting
+    - Dashboards
+    - Story Boards
+3. Presenting Ethically
+
+---
+
+class: center, middle
+
+# LET'S GRAB OUR DATA!
+
+Same data as before. I'll pop it into the Zoom chat. 
+
+---
+
+class: center, middle
+
+# Review of last session.
+
+Let's recreate a few visualizations from last time (and maybe a new one). 
+
+---
+
+class: left, middle
+
+# Plot One
+
+1. Create a Line Chart
+2. Change the axis to not include zero
+3. Copy sheet and change it to a bar chart
+4. Change the axis TO include zero
+5. Change measure from continuous to discrete
+6. Copy sheet and include state as a color
+7. Sort state by population
+
+---
+
+class: center, middle
+
+# I'm Curious, though... in 2016, what was the breakdown of zip code population?
+
+Does anyone know any one-dimensional data graphics?
+
+---
+
+class: left, middle
+
+# Plot Two
+
+1. Add column as a row and select Histogram
+2. Add a filter for 2016
+3. Explain the distribution
+4. Change y axis to logarithmic
+
+---
+
+class: center, middle
+
+# Last for Today
+
+Can you create a line chart of three zipcodes that are interesting to you? 
+Show how the population has changed over time. 
+
+---
+
+class: center, middle
+
+# Turning the plots into a dashboard
+
+Let's create our first dashboard using the charts we've created.
+
+---
+
+class: center, middle
+
+# Turning the plots into a story board
+
+Similar to a dashboard, but allows you to control the "story" and more naturally 
+add corresponding text. 
+
+---
+
+class: center, middle
+
+# Lying with Statistics
+
+"Figures often beguile me, particularly when I have the arranging of them myself; in which case the remark attributed to [then British Prime Minister, Benjamin] Disraeli would often apply with justice and force: 'There are three kinds of lies: lies, damned lies, and statistics.'" - Mark Twain, 1907
+
+---
+
+class: center, middle
+
+# Data Visualization can often be Manipulated for Purpose
+
+---
+
+class: center, middle
+
+# Consider the following line chart. What conclusion do you draw?
+
+![stand your ground](files/stand_your_ground.png)
+
+---
+
+class: center, middle
+
+# Take a Closer Look at the y-axis
+
+What is really happening?
+
+![stand your ground](files/stand_your_ground.png)
+
+---
+
+class: center, middle
+
+![shame](files/shame.gif)
+
+---
+
+class: center, middle
+
+![bad_y_axis](files/temp_change.png)
+
+---
+
+class: center, middle
+
+# Everything Looks Small from Far Away
+
+![zoom_out](files/zoom_out.gif)
+
+---
+
+class: center, middle
+
+# COVID is Getting Better?
+
+Look at the dates closely... 
+
+![COVID](files/covid-ga-recreation.jpeg)
+
+---
+
+class: center, middle
+
+![oh_no](files/i_dont_like_that.gif)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"ratio": "16:9",
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
