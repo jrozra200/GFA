@@ -53,11 +53,8 @@ changing this to the following (more on this below):
 date: "`r Sys.Date()`"
 ```
 
-The two other output options we _can_ use in this class are word documents and 
-pdf documents:
+The other output options we _can_ use are word documents:
 
-`output: pdf_document` (*Note: Requires LaTeX to be installed; not required for *
-*this class.*)  
 `output: word_document` (*Note: Will work even if Word is not installed.*)
 
 ### Adding TOC (Optional)
