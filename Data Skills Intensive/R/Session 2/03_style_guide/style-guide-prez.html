@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>STATS 4380 - Data Science</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Jake Rozran" />
+    <meta name="date" content="2022-09-01" />
+    <script src="style-guide-prez_files/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# STATS 4380 - Data Science
+]
+.subtitle[
+## Style Guide Presentation
+]
+.author[
+### Jake Rozran
+]
+.institute[
+### Villanova University
+]
+.date[
+### September 1, 2022
+]
+
+---
+
+
+class: center, middle
+
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 110px;
+height: 128px;
+z-index: 0;
+background-image: url(style-guide-prez_files/image_2132671030.no.size.png);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+bottom:-0.75em;left:1em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('a')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = 'https://www.villanova.edu'
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+# File Names
+
+---
+
+class: left, middle
+
+## File names should be meaningful and end in `.R` (or `.Rmd`)
+
+.pull-left[
+- Avoid using special characters in file names 
+- Stick with numbers, letters, `-`, and `_`
+- All lowercase letters
+- No spaces
+]
+
+.pull-right[
+
+
+```r
+# Good names
+fit_models.R
+utility_functions.R
+style-guide.Rmd
+
+# Bad names
+fit models.R
+foo.r
+stuff.r
+```
+]
+
+
+
+---
+
+class: left, middle
+
+## If files should be run in a particular order, prefix them with numbers
+
+.pull-left[
+If it seems likely you’ll have more than 10 files, left pad with zero.
+]
+
+.pull-right[
+
+```r
+00_download.R
+01_explore.R
+...
+09_model.R
+10_visualize.R
+```
+]
+
+---
+
+class: center, middle
+
+# Variable Names
+
+---
+
+class: left, middle
+
+.pull-left[
+- Snake case GOOD 
+- Camel case BAD
+- Variable and function names should use only lowercase letters, numbers, and 
+`_`
+- Variables should be nouns and functions should be verbs
+    - It should also be self explanatory what they are or what they do
+]
+
+.pull-right[
+
+```r
+# Good
+day_one
+day_1
+
+# Bad
+DayOne
+dayone
+```
+]
+
+---
+
+class: left, middle
+
+.pull-left[
+- Avoid reusing names of common functions or variables 
+    - actually... avoid reusing all variable names in your scripts
+- Make sure that what you assign a thing makes sense for its name
+
+]
+
+.pull-right[
+
+```r
+# Bad
+T &lt;- FALSE
+c &lt;- 10
+mean &lt;- function(x) sum(x)
+```
+]
+
+---
+
+class: center, middle
+
+# Spacing
+
+---
+
+class: left, middle
+
+.pull-left[
+Always put a space after a comma, never before, just like in regular English.
+]
+
+.pull-right[
+
+
+```r
+# Good
+x[, 1]
+
+# Bad
+x[,1]
+x[ ,1]
+x[ , 1]
+```
+]
+
+---
+
+class: left, middle
+
+.pull-left[
+Do not put spaces inside or outside parentheses for regular function calls.
+]
+
+.pull-right[
+
+```r
+# Good
+mean(x, na.rm = TRUE)
+
+# Bad
+mean (x, na.rm = TRUE)
+mean( x, na.rm = TRUE )
+```
+]
+
+---
+
+class: left, middle
+
+.pull-left[
+Place a space before and after `()` when used with `if`, `for`, or `while.`
+]
+
+.pull-right[
+
+```r
+# Good
+if (debug) {
+    show(x)
+}
+
+# Bad
+if(debug){
+    show(x)
+}
+```
+]
+
+---
+
+class: left, middle
+
+.pull-left[
+Place a space after `()` used for function arguments.
+]
+
+.pull-right[
+
+```r
+# Good
+function(x) {}
+
+# Bad
+function (x) {}
+function(x){}
+```
+]
+
+---
+
+class: left, middle
+
+.pull-left[
+Most operators (`==`, `=`, `+`, `-`, `&lt;-`, etc.) should always be surrounded by 
+spaces.
+]
+
+.pull-right[
+
+```r
+# Good
+height &lt;- (feet * 12) + inches
+mean(x, na.rm = TRUE)
+
+# Bad
+height&lt;-feet*12+inches
+mean(x, na.rm=TRUE)
+```
+]
+
+---
+
+class: center, middle
+
+One important exception to the space rule are these: `::`, `$`, `[`, `[[`, `^`.
+
+
+```r
+# Good
+sqrt(x^2 + y^2)
+df$z
+x &lt;- 1:10
+
+# Bad
+sqrt(x ^ 2 + y ^ 2)
+df $ z
+x &lt;- 1 : 10
+```
+
+---
+
+class: center, middle
+
+# Code Blocks
+
+---
+
+class: left, middle
+
+Curly braces, `{}`, define the most important hierarchy of R code. 
+
+- `{` should be the last character on the line
+- The contents should be indented by four spaces
+- `}` should be the first character on the line
+
+---
+
+class: left, middle
+
+.pull-left[
+
+```r
+# Good
+if (y == 0) {
+    if (x &gt; 0) {
+        log(x)
+    } else {
+        message("x is negative or zero")
+    }
+} else {
+    y^x
+}
+```
+]
+
+.pull-right[
+
+```bad_code_block
+# Bad
+if (y == 0) 
+{
+    if (x &gt; 0) {
+      log(x)
+    } else {
+  message("x is negative or zero")
+    }
+} else { y^x }
+```
+]
+
+---
+
+class: left, middle
+
+## Long Lines
+
+.pull-left[
+- Code should [almost] never go past 80 characters
+- You can add a line that tells you how wide 80 characters is
+    - You can add this yourself: 
+    `preferences &gt; code &gt; display &gt; show margin &gt; margin column = 80`
+- You can always add extra returns to keep things within the boundaries
+]
+
+.pull-right[
+
+```r
+# Good
+do_something_very_complicated(
+    something = "that",
+    requires = many,
+    arguments = "some of which may be long"
+)
+
+# Bad
+do_something_very_complicated("that", requires, many, arguments, "some of which may be long")
+```
+]
+
+---
+
+class: center, middle
+
+## Semicolons
+
+Don’t put `;` at the end of a line, and don’t use `;` to put multiple commands 
+on one line.
+
+---
+
+class: left, middle
+
+## Assignment
+
+.pull-left[
+Use `&lt;-`, not `=`, for assignment.
+]
+
+.pull-right[
+
+```r
+# Good
+x &lt;- 5
+
+# Bad
+x = 5
+```
+]
+
+---
+
+class: left, middle
+
+## Character vectors
+
+- Use `"`, not `'`, for quoting text
+- The only exception is when the text already contains double quotes and no 
+single quotes
+
+
+```r
+# Good
+"Text"
+'Text with "quotes"'
+'&lt;a href="http://style.tidyverse.org"&gt;A link&lt;/a&gt;'
+
+# Bad
+'Text'
+'Text with "double" and \'single\' quotes'
+```
+
+---
+
+class: center, middle
+
+## Logical vectors
+
+Prefer `TRUE` and `FALSE` over `T` and `F`.
+
+---
+
+class: left, middle
+
+## Comments
+
+- Each line of a comment should begin with the comment symbol and a single 
+space: `#`
+- In data analysis code, use comments to record important findings and analysis 
+decisions
+- If you need comments to explain what your code is doing, consider 
+rewriting your code to be clearer
+- If you discover that you have more comments than code, consider switching to R 
+Markdown
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"ratio": "16:9",
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

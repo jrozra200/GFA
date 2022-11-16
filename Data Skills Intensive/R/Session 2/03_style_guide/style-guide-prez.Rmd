@@ -1,0 +1,429 @@
+---
+title: "STATS 4380 - Data Science"
+subtitle: "Style Guide Presentation"
+author: "Jake Rozran"
+institute: "Villanova University"
+date: "September 1, 2022"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      ratio: 16:9
+      countIncrementalSlides: true
+---
+
+class: center, middle
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+    fig.width = 9, 
+    fig.height = 3.5, 
+    fig.retina = 3,
+    out.width = "100%",
+    cache = FALSE,
+    message = FALSE, 
+    warning = FALSE,
+    hiline = TRUE
+)
+```
+
+```{r xaringan-themer, include = FALSE, warning = FALSE}
+library(xaringanthemer)
+style_duo_accent(primary_color = "#00205B", 
+                 secondary_color = "#13B5EA",
+                 code_font_size = "1rem",
+                 text_font_size = "1.25rem")
+
+# "#f24244"
+```
+
+```{r xaringan-logo, echo=FALSE}
+library(xaringanExtra)
+
+use_logo(image_url = "style-guide-prez_files/image_2132671030.no.size.png",
+         exclude_class = "hide_logo",
+         link_url = "https://www.villanova.edu",
+         position = css_position(left = "1em", bottom = "-0.75em"))
+```
+
+# File Names
+
+---
+
+class: left, middle
+
+## File names should be meaningful and end in `.R` (or `.Rmd`)
+
+.pull-left[
+- Avoid using special characters in file names 
+- Stick with numbers, letters, `-`, and `_`
+- All lowercase letters
+- No spaces
+]
+
+.pull-right[
+
+```{r files, eval = FALSE}
+# Good names
+fit_models.R
+utility_functions.R
+style-guide.Rmd
+
+# Bad names
+fit models.R
+foo.r
+stuff.r
+```
+]
+
+
+
+---
+
+class: left, middle
+
+## If files should be run in a particular order, prefix them with numbers
+
+.pull-left[
+If it seems likely you’ll have more than 10 files, left pad with zero.
+]
+
+.pull-right[
+```{r more_files, eval = FALSE} 
+00_download.R
+01_explore.R
+...
+09_model.R
+10_visualize.R
+```
+]
+
+---
+
+class: center, middle
+
+# Variable Names
+
+---
+
+class: left, middle
+
+.pull-left[
+- Snake case GOOD 
+- Camel case BAD
+- Variable and function names should use only lowercase letters, numbers, and 
+`_`
+- Variables should be nouns and functions should be verbs
+    - It should also be self explanatory what they are or what they do
+]
+
+.pull-right[
+```{r var_names, eval = FALSE}
+# Good
+day_one
+day_1
+
+# Bad
+DayOne
+dayone
+```
+]
+
+---
+
+class: left, middle
+
+.pull-left[
+- Avoid reusing names of common functions or variables 
+    - actually... avoid reusing all variable names in your scripts
+- Make sure that what you assign a thing makes sense for its name
+
+]
+
+.pull-right[
+```{r bad_names, eval = FALSE}
+# Bad
+T <- FALSE
+c <- 10
+mean <- function(x) sum(x)
+```
+]
+
+---
+
+class: center, middle
+
+# Spacing
+
+---
+
+class: left, middle
+
+.pull-left[
+Always put a space after a comma, never before, just like in regular English.
+]
+
+.pull-right[
+
+```{r commas, eval = FALSE}
+# Good
+x[, 1]
+
+# Bad
+x[,1]
+x[ ,1]
+x[ , 1]
+```
+]
+
+---
+
+class: left, middle
+
+.pull-left[
+Do not put spaces inside or outside parentheses for regular function calls.
+]
+
+.pull-right[
+```{r paren, eval = FALSE}
+# Good
+mean(x, na.rm = TRUE)
+
+# Bad
+mean (x, na.rm = TRUE)
+mean( x, na.rm = TRUE )
+```
+]
+
+---
+
+class: left, middle
+
+.pull-left[
+Place a space before and after `()` when used with `if`, `for`, or `while.`
+]
+
+.pull-right[
+```{r brace, eval = FALSE}
+# Good
+if (debug) {
+    show(x)
+}
+
+# Bad
+if(debug){
+    show(x)
+}
+```
+]
+
+---
+
+class: left, middle
+
+.pull-left[
+Place a space after `()` used for function arguments.
+]
+
+.pull-right[
+```{r functions, eval = FALSE}
+# Good
+function(x) {}
+
+# Bad
+function (x) {}
+function(x){}
+```
+]
+
+---
+
+class: left, middle
+
+.pull-left[
+Most operators (`==`, `=`, `+`, `-`, `<-`, etc.) should always be surrounded by 
+spaces.
+]
+
+.pull-right[
+```{r oper, eval = FALSE}
+# Good
+height <- (feet * 12) + inches
+mean(x, na.rm = TRUE)
+
+# Bad
+height<-feet*12+inches
+mean(x, na.rm=TRUE)
+```
+]
+
+---
+
+class: center, middle
+
+One important exception to the space rule are these: `::`, `$`, `[`, `[[`, `^`.
+
+```{r no_space, eval = FALSE}
+# Good
+sqrt(x^2 + y^2)
+df$z
+x <- 1:10
+
+# Bad
+sqrt(x ^ 2 + y ^ 2)
+df $ z
+x <- 1 : 10
+```
+
+---
+
+class: center, middle
+
+# Code Blocks
+
+---
+
+class: left, middle
+
+Curly braces, `{}`, define the most important hierarchy of R code. 
+
+- `{` should be the last character on the line
+- The contents should be indented by four spaces
+- `}` should be the first character on the line
+
+---
+
+class: left, middle
+
+.pull-left[
+```{r code_block, eval = FALSE}
+# Good
+if (y == 0) {
+    if (x > 0) {
+        log(x)
+    } else {
+        message("x is negative or zero")
+    }
+} else {
+    y^x
+}
+```
+]
+
+.pull-right[
+```{bad_code_block, eval = FALSE}
+# Bad
+if (y == 0) 
+{
+    if (x > 0) {
+      log(x)
+    } else {
+  message("x is negative or zero")
+    }
+} else { y^x }
+```
+]
+
+---
+
+class: left, middle
+
+## Long Lines
+
+.pull-left[
+- Code should [almost] never go past 80 characters
+- You can add a line that tells you how wide 80 characters is
+    - You can add this yourself: 
+    `preferences > code > display > show margin > margin column = 80`
+- You can always add extra returns to keep things within the boundaries
+]
+
+.pull-right[
+```{r long_lines, eval = FALSE}
+# Good
+do_something_very_complicated(
+    something = "that",
+    requires = many,
+    arguments = "some of which may be long"
+)
+
+# Bad
+do_something_very_complicated("that", requires, many, arguments, "some of which may be long")
+```
+]
+
+---
+
+class: center, middle
+
+## Semicolons
+
+Don’t put `;` at the end of a line, and don’t use `;` to put multiple commands 
+on one line.
+
+---
+
+class: left, middle
+
+## Assignment
+
+.pull-left[
+Use `<-`, not `=`, for assignment.
+]
+
+.pull-right[
+```{r assignment, eval = FALSE}
+# Good
+x <- 5
+
+# Bad
+x = 5
+```
+]
+
+---
+
+class: left, middle
+
+## Character vectors
+
+- Use `"`, not `'`, for quoting text
+- The only exception is when the text already contains double quotes and no 
+single quotes
+
+```{r quotes, eval = FALSE}
+# Good
+"Text"
+'Text with "quotes"'
+'<a href="http://style.tidyverse.org">A link</a>'
+
+# Bad
+'Text'
+'Text with "double" and \'single\' quotes'
+```
+
+---
+
+class: center, middle
+
+## Logical vectors
+
+Prefer `TRUE` and `FALSE` over `T` and `F`.
+
+---
+
+class: left, middle
+
+## Comments
+
+- Each line of a comment should begin with the comment symbol and a single 
+space: `#`
+- In data analysis code, use comments to record important findings and analysis 
+decisions
+- If you need comments to explain what your code is doing, consider 
+rewriting your code to be clearer
+- If you discover that you have more comments than code, consider switching to R 
+Markdown
