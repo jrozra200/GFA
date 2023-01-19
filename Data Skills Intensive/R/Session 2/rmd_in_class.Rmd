@@ -1,0 +1,93 @@
+---
+title: "Intro to RMarkdown"
+author: "Jake Rozran"
+date: "2022-11-16"
+output: 
+    html_document:
+        toc: true
+        toc_float: 
+            smooth_scroll: true
+            collapsed: true
+---
+
+# How to Write `md`
+
+Markdown is a language of its own - it is straightforward once you get it, but 
+it does have some quirks.
+
+## `md` "Code"
+
+This is plain text. If you want to show a new line, you need to end the line 
+with two spaces.  
+
+To have a "return character," you need two spaces at the end.  
+
+*italics* or _italics_  
+**bold** or __bold__  
+superscript^2^  
+~~strikethrough~~  
+[link](www.govern4america.org)  
+`this_will_appear_as_inline_code`
+
+```
+this = "is code"
+# here is a comment in my code
+```
+# Header 1
+
+## Header 2
+
+### Header 3
+
+#### Header 4
+
+***
+
+> This is a block quote
+
+- unordered list
+- second item
+    - this is a sub item
+    - this is a second sub item
+- third item
+
+1. Here is an ordered list
+2. With a second item
+    + sub-item
+    + another sub item
+
+| Table 1 | Table col 2 |
+|---------|-------------|
+| cell 1 | cell 2 |
+| cell 3 | cell 4 is longer this time |
+
+# The `R` in `Rmd`
+
+We can add `R` code both inline, in this test, and in chunk (mostly how I use 
+`Rmd`).
+
+## Inline `R` Code
+
+You write your code in line by using a tick (`) followed by an r and your code, 
+closed by a last tick.
+
+2 + 2 equals `r 2 + 2`.
+
+## Embedded `R` Code Chunks
+
+```{r name_of_chunk}
+# Here we can run R code
+
+4 + 4
+2^3
+"cat" %in% c("cat", "dog", "mouse")
+```
+
+```{r plot_chunk, echo = FALSE, out.width = "100%"}
+hist(rnorm(1000))
+```
+
+
+
+
+

@@ -11,9 +11,9 @@
 
 <meta name="author" content="Jake Rozran" />
 
-<meta name="date" content="2022-09-01" />
+<meta name="date" content="2022-08-29" />
 
-<title>Intro to RMarkdown</title>
+<title>Working with Data - Part 1</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1481,6 +1481,12 @@ div.tocify {
   border-radius: 0px;
 }
 
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
 
 </style>
 
@@ -1510,106 +1516,171 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Intro to RMarkdown</h1>
+<h1 class="title toc-ignore">Working with Data - Part 1</h1>
 <h4 class="author">Jake Rozran</h4>
-<h4 class="date">2022-09-01</h4>
+<h4 class="date">2022-08-29</h4>
 
 </div>
 
 
-<div id="how-to-write-md" class="section level1">
-<h1>How to Write <code>md</code></h1>
-<p>Markdown is a language of it’s own. Fairly straightforward - helps
-you style your document.</p>
-<div id="md-code" class="section level2">
-<h2><code>md</code> “Code”</h2>
-<p>This is plain text.<br />
-End a line with 2 spaces to start a new paragraph.<br />
-<em>italics</em> or <em>italics</em><br />
-<strong>bold</strong> or <strong>bold</strong><br />
-superscript<sup>2</sup><br />
-<del>strikethrough</del><br />
-<a href="www.jakelearnsdatascience.com">link to professor’s
-website</a><br />
-<code>inline code</code></p>
-<pre><code>chunk of code
-another line of code
-x &lt;- 12</code></pre>
+<div id="assignment" class="section level1">
+<h1>Assignment</h1>
+<pre class="r"><code>x &lt;- c(5, 7, 9, 13, -4, 8) # preferred
+x</code></pre>
+<pre><code>## [1]  5  7  9 13 -4  8</code></pre>
+<pre class="r"><code>x = c(5, 7, 9, 13, -4, 8) # equivalent
+print(x) # Equivalent to just typing x</code></pre>
+<pre><code>## [1]  5  7  9 13 -4  8</code></pre>
+<pre class="r"><code>c(5, 7, 9, 13, -4, 8) -&gt; x # also works
+x</code></pre>
+<pre><code>## [1]  5  7  9 13 -4  8</code></pre>
+<p>The above code creates a vector of length 6 using the c() function to
+concatenate scalars.</p>
+<p><em>Note: <code>c(5, 7, 9, 13, -4, 8) = x</code> will NOT
+work.</em></p>
 </div>
+<div id="useful-commands-for-data-entry" class="section level1">
+<h1>Useful Commands for Data Entry</h1>
+<pre class="r"><code>60:72 # Integers from 60 to 72</code></pre>
+<pre><code>##  [1] 60 61 62 63 64 65 66 67 68 69 70 71 72</code></pre>
+<pre class="r"><code>seq(60, 72) # Also integers from 60 to 72</code></pre>
+<pre><code>##  [1] 60 61 62 63 64 65 66 67 68 69 70 71 72</code></pre>
+<pre class="r"><code>seq(60, 72, by = 2) # Also integers from 60 to 72, but by 2</code></pre>
+<pre><code>## [1] 60 62 64 66 68 70 72</code></pre>
+<pre class="r"><code>seq(60, 70, length = 3) # Three equally spaced values</code></pre>
+<pre><code>## [1] 60 65 70</code></pre>
+<pre class="r"><code>rep(60, 5) # Repeat the value 60, 5 times</code></pre>
+<pre><code>## [1] 60 60 60 60 60</code></pre>
+<pre class="r"><code>rep(c(60, 72), 3) # Repeat the sequence c(60, 72) 3 times.</code></pre>
+<pre><code>## [1] 60 72 60 72 60 72</code></pre>
+<pre class="r"><code>rep(c(60, 66, 72), c(1, 2, 3)) # One 60, two 66s, and three 72s</code></pre>
+<pre><code>## [1] 60 66 66 72 72 72</code></pre>
 </div>
-<div id="header-1" class="section level1">
-<h1>header 1</h1>
-<div id="header-2" class="section level2">
-<h2>header 2</h2>
-<div id="header-3" class="section level3">
-<h3>header 3</h3>
-<div id="header-4" class="section level4">
-<h4>header 4</h4>
-<div id="header-5" class="section level5">
-<h5>header 5</h5>
-<hr />
-<hr />
-<blockquote>
-<p>this is all a block quote. it can go on for ever. this is still a
-block quote.</p>
-</blockquote>
-<p>this is regular text again.</p>
+<div id="missing-data-in-r" class="section level1">
+<h1>Missing Data in R</h1>
 <ul>
-<li>this is an item</li>
-<li>in an unordered list
-<ul>
-<li>this is subitem 1</li>
-<li>this is subitem 2</li>
-</ul></li>
+<li>Missing data in R is denoted by <code>NA</code>.</li>
+<li>Some functions produce <code>NA</code> when any data are
+missing</li>
 </ul>
-<ol style="list-style-type: decimal">
-<li>This is an ordered list</li>
-<li>This is the second item
-<ol style="list-style-type: lower-alpha">
-<li>An ordered list can also have letters</li>
-<li>instead of numbers</li>
-</ol></li>
-</ol>
-<table>
-<thead>
-<tr class="header">
-<th>Table header</th>
-<th>Second header</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>item 1</td>
-<td>item 2</td>
-</tr>
-<tr class="even">
-<td>item 3</td>
-<td>item 4</td>
-</tr>
-</tbody>
-</table>
+<pre class="r"><code>mean(c(1, 2, NA))</code></pre>
+<pre><code>## [1] NA</code></pre>
+<p>If a function has the <code>na.rm</code> argument, you can use that
+(preferred) to get rid of pesky <code>NA</code>s - IRL, you better
+understand why there are <code>NA</code>s in your data, or else you
+might be calculating something unintended!</p>
+<p>Also, if there is no <code>na.rm</code> argument, you can leverage
+the function <code>na.omit()</code>.</p>
+<pre class="r"><code>mean(c(1, 2, NA), na.rm = TRUE) # Preferred for mean function</code></pre>
+<pre><code>## [1] 1.5</code></pre>
+<pre class="r"><code>mean(na.omit(c(1, 2, NA))) # Also works</code></pre>
+<pre><code>## [1] 1.5</code></pre>
+</div>
+<div id="data-classes" class="section level1">
+<h1>Data Classes</h1>
+<p>There are six basic data types: <code>logical</code>,
+<code>character</code>, <code>numeric</code> (which can be further
+broken down into <code>integer</code>, <code>double</code>, and
+<code>complex</code>), and <code>raw.</code></p>
+<div id="factors" class="section level2">
+<h2>Factors</h2>
+<p>There are also factors, but they are annoying, so we won’t use them
+much</p>
+<pre class="r"><code>z &lt;- factor(c(&quot;x&quot;, &quot;y&quot;, &quot;z&quot;))
+z</code></pre>
+<pre><code>## [1] x y z
+## Levels: x y z</code></pre>
+<pre class="r"><code>z &lt;- append(z, c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;))
+z</code></pre>
+<pre><code>## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
+<p>This happens because factors are stored internally as integers that
+correspond to the id’s of the factor levels. So we get the integer of
+the “level” instead of the actual character value.</p>
+<p>This is just much easier to deal with and gives the expected
+result:</p>
+<pre class="r"><code>z &lt;- c(&quot;x&quot;, &quot;y&quot;, &quot;z&quot;)
+z &lt;- append(z, c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;))
+z</code></pre>
+<pre><code>## [1] &quot;x&quot; &quot;y&quot; &quot;z&quot; &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div id="the-r-in-rmd" class="section level1">
-<h1>The <code>R</code> in <code>Rmd</code></h1>
-<p>Two plus two equals 4.</p>
-<pre class="r"><code># We can do anything R code we want in here
+<div id="vectors" class="section level1">
+<h1>Vectors</h1>
+<div id="data-selection-for-vectors" class="section level2">
+<h2>Data Selection for Vectors</h2>
+<p>Since vector operations are so fundamental in R, it is important to
+be able to access (or index) elements within these vectors. Many
+different ways of indexing vectors are available.</p>
+<pre class="r"><code>x &lt;- c(5, 7, 9, 13, -4, 8)
 
-4 + 4
-2^3
-&quot;cat&quot; %in% c(&quot;cat&quot;, &quot;dog&quot;, &quot;mouse&quot;)</code></pre>
-<pre class="r"><code>library(tidyverse)</code></pre>
-<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
-## ✔ tibble  3.1.7     ✔ dplyr   1.0.9
-## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
-## ✔ readr   2.1.2     ✔ forcats 0.5.1
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+x[2] # Gets the second item from the vector x</code></pre>
+<pre><code>## [1] 7</code></pre>
+<pre class="r"><code>x[c(2, 4)] # Gets the second and fourth item from the vector x</code></pre>
+<pre><code>## [1]  7 13</code></pre>
+<pre class="r"><code>x[c(TRUE, TRUE, TRUE, TRUE, TRUE, FALSE)] # Only returns those values that are TRUE</code></pre>
+<pre><code>## [1]  5  7  9 13 -4</code></pre>
+<pre class="r"><code>x[1:5] # Returns the first through the fifth values of x</code></pre>
+<pre><code>## [1]  5  7  9 13 -4</code></pre>
+<pre class="r"><code>x[-6] # Returns x without the sixth value</code></pre>
+<pre><code>## [1]  5  7  9 13 -4</code></pre>
+<p>Vectors are recycled if needed; for example, when comparing each of
+the elements of a vector to a scalar.</p>
+<pre class="r"><code>x &gt; 8 # Greater than</code></pre>
+<pre><code>## [1] FALSE FALSE  TRUE  TRUE FALSE FALSE</code></pre>
+<pre class="r"><code>x &lt; 8 # Less than</code></pre>
+<pre><code>## [1]  TRUE  TRUE FALSE FALSE  TRUE FALSE</code></pre>
+<pre class="r"><code>x == 7 # Equal</code></pre>
+<pre><code>## [1] FALSE  TRUE FALSE FALSE FALSE FALSE</code></pre>
+<pre class="r"><code>x != 7 # Not equal</code></pre>
+<pre><code>## [1]  TRUE FALSE  TRUE  TRUE  TRUE  TRUE</code></pre>
+<pre class="r"><code>x &lt;= 5 # Less than or equal to</code></pre>
+<pre><code>## [1]  TRUE FALSE FALSE FALSE  TRUE FALSE</code></pre>
+<pre class="r"><code>x &gt;= 5 # Greater than or equal to</code></pre>
+<pre><code>## [1]  TRUE  TRUE  TRUE  TRUE FALSE  TRUE</code></pre>
+</div>
+<div id="side-note-about-true-and-false" class="section level2">
+<h2>Side Note about <code>TRUE</code> and <code>FALSE</code></h2>
+<p>ALSO - <code>TRUE</code> == 1 and <code>FALSE</code> == 0</p>
+<pre class="r"><code>sum(x &gt; 8) # Count of how many elements meet the condition x &gt; 8</code></pre>
+<pre><code>## [1] 2</code></pre>
+</div>
+<div id="operators-vectors" class="section level2">
+<h2>Operators &amp; Vectors</h2>
+<p>Operators can also be done on a vector</p>
+<pre class="r"><code>x + 1</code></pre>
+<pre><code>## [1]  6  8 10 14 -3  9</code></pre>
+<pre class="r"><code>x - 1</code></pre>
+<pre><code>## [1]  4  6  8 12 -5  7</code></pre>
+<pre class="r"><code>x * 4</code></pre>
+<pre><code>## [1]  20  28  36  52 -16  32</code></pre>
+<pre class="r"><code>x / 2</code></pre>
+<pre><code>## [1]  2.5  3.5  4.5  6.5 -2.0  4.0</code></pre>
+<pre class="r"><code>x^3</code></pre>
+<pre><code>## [1]  125  343  729 2197  -64  512</code></pre>
+<pre class="r"><code>x %% 6</code></pre>
+<pre><code>## [1] 5 1 3 1 2 2</code></pre>
+<pre class="r"><code>x %/% 5</code></pre>
+<pre><code>## [1]  1  1  1  2 -1  1</code></pre>
+<p>You can also do these operations on two vectors.</p>
+<pre class="r"><code>y &lt;- c(20, 13, 17, 92, 1, 4)
+
+x + y</code></pre>
+<pre><code>## [1]  25  20  26 105  -3  12</code></pre>
+<pre class="r"><code>x^y</code></pre>
+<pre><code>## [1]   9.536743e+13   9.688901e+10   1.667718e+16  3.039404e+102  -4.000000e+00
+## [6]   4.096000e+03</code></pre>
+<pre class="r"><code>x - y</code></pre>
+<pre><code>## [1] -15  -6  -8 -79  -5   4</code></pre>
+<pre class="r"><code>x * y</code></pre>
+<pre><code>## [1]  100   91  153 1196   -4   32</code></pre>
+</div>
+<div id="the-in-command" class="section level2">
+<h2>The %in% command</h2>
+<pre class="r"><code>&quot;c&quot; %in% c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>&quot;z&quot; %in% c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;)</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+</div>
 </div>
 
 
@@ -1670,7 +1741,7 @@ $(document).ready(function ()  {
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
     };
-    options.showAndHide = true;
+    options.showAndHide = false;
     options.smoothScroll = true;
 
     // tocify

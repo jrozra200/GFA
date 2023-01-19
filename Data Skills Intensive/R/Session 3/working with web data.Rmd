@@ -1,0 +1,50 @@
+---
+title: "Scraping Web Data in R"
+author: "Jake Rozran"
+date: "2023-01-18"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(rvest)
+library(lubridate)
+```
+
+
+```{r webscraping}
+urls <- c("https://www.allrecipes.com/recipe/275252/grilled-halloumi-with-herbed-berry-salsa/",
+          "https://www.allrecipes.com/recipe/25321/eggplant-parmesan-ii/",
+          "https://www.allrecipes.com/recipe/151593/campbells-tuna-noodle-casserole/")
+
+final_df <- data.frame()
+
+for(url in urls) {
+    html_data <- url %>% 
+        read_html() %>% 
+        html_elements("#mntl-structured-ingredients_1-0") %>% 
+        pluck(1) %>% 
+        html_nodes("ul") %>% 
+        pluck(1) %>% 
+        html_text()
+    
+    title <- url %>% 
+        read_html() %>% 
+        html_elements("#article-heading_2-0") %>% 
+        html_text() %>% 
+        str_remove("\n")
+    
+    finished_text <- unlist(str_split(html_data, "\n"))
+    finished_text <- finished_text[finished_text != ""]
+    tmp_df <- data.frame(
+        ingredients = finished_text,
+        title = title, 
+        url = url
+    )
+    
+    final_df <- bind_rows(final_df, tmp_df)
+}
+
+
+
+```

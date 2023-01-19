@@ -1,0 +1,79 @@
+---
+title: "Untitled"
+author: "Your Name"
+date: "Date"
+output:
+  word_document: default
+  html_document: default
+---
+
+# Update the YAML Header
+
+Go into the YAML Header above and:
+
+1. Add your name as the author
+2. Make the title "My first Rmd"
+3. Add today's date or (optionally) add in the r command to dynamically add 
+today's date
+4. (Optionally) add a table of contents
+
+# Our First Code Chunk
+
+By now, we should have installed `tidyverse` and `mdsr`. Load those packages 
+here, in the first chunk. That is best practice. 
+
+```{r setup}
+library(tidyverse)
+library(mdsr)
+```
+
+# The Next Chunk
+
+Click the green arrow on the top right of the chunk below. What happens? (Write 
+your response in the area below the chunk.)
+
+```{r cars}
+cars
+
+summary(cars)
+```
+
+# Our First Plot
+
+Click the green arrow on the top right of the chunk below. What happens? (Write 
+your response in the area below the chunk.)
+
+```{r pressure}
+plot(pressure)
+```
+
+# Creating our First Chunk
+
+Create an `r` code chunk below. Name it something meaningful. Then add code in 
+the chunk that subtracts 10 from 5. 
+
+```{r first_chunk}
+5 - 10
+```
+
+# Create Another Chunk
+
+Create an `r` code chunk below. Name it something meaningful. Also, this time 
+add an option so that the code is not shown in the knitted output (only the 
+output). Inside the chunk, put the following code to plot a histogram: 
+`hist(runif(1000))`.
+
+```{r histogram}
+hist(runif(100000))
+```
+
+# Running Code In-Line
+
+Below this text, create some in-line code that evaluates 100 divided by 39. 
+
+`r 100 / 39`
+
+# Knit This File
+
+Finally - first save this file to a proper location with a proper name, then 
+knit this file to both `html` and `docx`. 

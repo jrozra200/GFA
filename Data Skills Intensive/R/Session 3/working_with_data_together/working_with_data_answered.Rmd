@@ -1,0 +1,112 @@
+---
+title: "Intro R - Working with Data"
+output:
+  word_document: default
+---
+
+Enter the following data and assign it to a variable called `prediet`: 140, 160, 
+135, 120, 125, 165, 108, 130, 225, 140, 180.
+
+```{r}
+prediet <- c(140, 160, 135, 120, 125, 165, 108, 130, 225, 140, 180)
+prediet
+```
+
+
+Enter the following data and assign it to a variable called `postdiet`: 139, 
+155, 120, 118, 123, 155, 108, 129, 195, 142, 176
+
+```{r}
+postdiet <- c(139, 155, 120, 118, 123, 155, 108, 129, 195, 142, 176)
+```
+
+Calculate the weight loss (from `prediet` to `postdiet`).
+
+```{r}
+weight_loss <- postdiet - prediet
+weight_loss
+```
+
+Print (only) the 5th element of weight loss using `[]` notation.
+
+```{r}
+weight_loss[5]
+```
+
+Convert this value to kilograms (2.2 pounds is a kilogram)
+
+```{r}
+kgs <- weight_loss / 2.2
+kgs
+```
+
+Verify that the kilograms is a numeric variable using `class()`.
+
+```{r}
+class(kgs)
+is.numeric(kgs)
+```
+
+Assemble all four variables into a data frame using `data.frame()`.
+
+```{r}
+weight <- data.frame(prediet, postdiet, weight_loss, kgs)
+weight
+```
+
+
+Find the find the `mean`, `median`, `minimum`, and `maximum` of the weight loss 
+in kilograms using a summary statistic function for each one.
+
+```{r}
+mean(weight_loss)
+median(weight_loss)
+min(weight_loss)
+max(weight_loss)
+```
+
+
+Use the `summary()` command to get all the summary statistics for the weight loss 
+variable in kilograms. (add a chunk)
+
+```{r summary}
+summary(weight_loss)
+```
+
+Use an `if…else` statement to create a new variable called `weightgain` which 
+equals “lost” if they lost weight and “gain” otherwise. Verify that it’s a 
+character variable by using the `is.character()` function. (add a chunk)
+
+```{r new_var}
+library(tidyverse)
+weight$weightgain <- if_else(weight_loss < 0, "lost", "gain")
+weight
+is.character(weight$weightgain)
+```
+
+Conduct the appropriate statistical inference to determine whether the weight 
+loss program was effective. State the assumptions/conditions for this test and 
+verify them. (We haven't yet talked about graphics, but you can use the `stem()` 
+command to do a basic text-based graphic or try `hist()`. (add a chunk)
+
+```{r stats}
+hist(weight_loss)
+
+quantile(weight_loss, 0.95)
+```
+
+H0: weight_loss >= 0
+HA: weight_loss < 0
+
+
+
+
+
+
+
+
+
+
+
+
+

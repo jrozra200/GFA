@@ -1,0 +1,164 @@
+---
+title: "Working with Data - Part 1"
+author: "Jake Rozran"
+date: "`r Sys.Date()`"
+output: 
+    html_document:
+        toc: true
+        toc_float:
+            smooth_scroll: true
+            collapsed: false
+        
+---
+
+# Assignment
+
+```{r assignment}
+x <- c(5, 7, 9, 13, -4, 8) # preferred
+x
+x = c(5, 7, 9, 13, -4, 8) # equivalent
+print(x) # Equivalent to just typing x
+
+c(5, 7, 9, 13, -4, 8) -> x # also works
+x
+```
+
+The above code creates a vector of length 6 using the c() function to 
+concatenate scalars.
+
+*Note: `c(5, 7, 9, 13, -4, 8) = x` will NOT work.*
+
+# Useful Commands for Data Entry
+
+```{r data_entry}
+60:72 # Integers from 60 to 72
+seq(60, 72) # Also integers from 60 to 72
+
+seq(60, 72, by = 2) # Also integers from 60 to 72, but by 2
+seq(60, 70, length = 3) # Three equally spaced values
+
+rep(60, 5) # Repeat the value 60, 5 times
+rep(c(60, 72), 3) # Repeat the sequence c(60, 72) 3 times.
+
+rep(c(60, 66, 72), c(1, 2, 3)) # One 60, two 66s, and three 72s
+```
+
+# Missing Data in R
+
+- Missing data in R is denoted by `NA`.
+- Some functions produce `NA` when any data are missing
+
+```{r nas}
+mean(c(1, 2, NA))
+```
+
+If a function has the `na.rm` argument, you can use that (preferred) to get rid 
+of pesky `NA`s - IRL, you better understand why there are `NA`s in your data, or 
+else you might be calculating something unintended!
+
+Also, if there is no `na.rm` argument, you can leverage the function `na.omit()`.
+
+```{r no_more_nas}
+mean(c(1, 2, NA), na.rm = TRUE) # Preferred for mean function
+
+mean(na.omit(c(1, 2, NA))) # Also works
+```
+
+# Data Classes
+
+There are six basic data types: `logical`, `character`, `numeric` (which can be 
+further broken down into `integer`, `double`, and `complex`), and `raw.` 
+
+## Factors
+
+There are also factors, but they are annoying, so we won't use them much
+
+```{r factors}
+z <- factor(c("x", "y", "z"))
+z
+z <- append(z, c("a", "b", "c"))
+z
+```
+
+This happens because factors are stored internally as integers that correspond 
+to the id’s of the factor levels. So we get the integer of the "level" instead 
+of the actual character value. 
+
+This is just much easier to deal with and gives the expected result:
+
+```{r char}
+z <- c("x", "y", "z")
+z <- append(z, c("a", "b", "c"))
+z
+```
+
+# Vectors 
+
+## Data Selection for Vectors
+
+Since vector operations are so fundamental in R, it is important to be able to 
+access (or index) elements within these vectors. Many different ways of indexing 
+vectors are available.
+
+```{r vectors}
+x <- c(5, 7, 9, 13, -4, 8)
+
+x[2] # Gets the second item from the vector x
+x[c(2, 4)] # Gets the second and fourth item from the vector x
+x[c(TRUE, TRUE, TRUE, TRUE, TRUE, FALSE)] # Only returns those values that are TRUE
+x[1:5] # Returns the first through the fifth values of x
+x[-6] # Returns x without the sixth value
+```
+
+Vectors are recycled if needed; for example, when comparing each of the elements 
+of a vector to a scalar.
+
+```{r vec_ops}
+x > 8 # Greater than
+x < 8 # Less than
+x == 7 # Equal
+x != 7 # Not equal
+x <= 5 # Less than or equal to
+x >= 5 # Greater than or equal to
+```
+
+## Side Note about `TRUE` and `FALSE`
+
+ALSO - `TRUE` == 1 and `FALSE` == 0
+
+```{r sum_true}
+sum(x > 8) # Count of how many elements meet the condition x > 8
+```
+
+## Operators & Vectors
+
+Operators can also be done on a vector
+
+```{r vec_arth}
+x + 1
+x - 1
+x * 4
+x / 2
+x^3
+x %% 6
+x %/% 5
+```
+
+You can also do these operations on two vectors.
+
+```{r more_vec}
+y <- c(20, 13, 17, 92, 1, 4)
+
+x + y
+x^y
+x - y
+x * y
+```
+
+## The %in% command
+
+```{r in_cmd}
+"c" %in% c("a", "b", "c", "d", "e", "f")
+"z" %in% c("a", "b", "c", "d", "e", "f")
+```
+
